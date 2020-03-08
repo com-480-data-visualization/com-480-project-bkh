@@ -2,7 +2,7 @@
 
 | Student's name | SCIPER |
 | -------------- | ------ |
-| | |
+| Pavlo Karalupov | 293393 |
 | | |
 | | |
 
