@@ -16,7 +16,7 @@
 
 *Find a dataset (or multiple) that you will explore. Assess the quality of the data it contains and how much preprocessing / data-cleaning it will require before tackling visualization. We recommend using a standard dataset as this course is not about scraping nor data processing.*
 
-The [dataset] (https://www.kaggle.com/paultimothymooney/lord-of-the-rings-data)we are using is from Kaggle, authored by originally Paul Mooney. It is about a famous fictional novel by J.R.R.Tolkien - *The Lord of the Rings*, and a film series based on the novel. The data originally contains two datasets - first one - *lotr_characters.csv* which is about the characters in the novel, and the second one - *lotr_scripts.csv*, the scripts from three films. 
+The [dataset](https://www.kaggle.com/paultimothymooney/lord-of-the-rings-data) we are using is from Kaggle, authored by originally Paul Mooney. It is about a famous fictional novel by J.R.R.Tolkien - *The Lord of the Rings*, and a film series based on the novel. The data originally contains two datasets - first one - *lotr_characters.csv* which is about the characters in the novel, and the second one - *lotr_scripts.csv*, the scripts from three films. 
 
 First dataset contains the following features of characters: *Birth, Death, Gender, Hair, Height, Name, Race, Realm, Spouse*
 Second dataset contains dialogs from movies and has 3 columns: *Char, Dialog, Movie*
