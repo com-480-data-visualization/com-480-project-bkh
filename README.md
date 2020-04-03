@@ -34,6 +34,10 @@ The main axis we would like to develop are the following:
 - How is the link between main characters in movies? How their races, physical appearances and realms are important and relevant?
 - How is the evolution of the events through time, what are their affects, and consequences in the novel, and in the context of films?
 
+### 3. Exploratory Analysis
+
+Please check out [Jupyter Notebook](https://github.com/com-480-data-visualization/com-480-project-bkh/blob/master/ExploratoryAnalysis_final.ipynb) for analysis. 
+
 ### 4. Related Work
 
 - There are some works that allready done some analysis on the data and visualized the results. For example in [here](https://www.kaggle.com/xvivancos/analyzing-the-lord-of-the-rings-data) you can find very detailed analysis of the same data. Also [here](https://github.com/MokoSan/FSharpAdvent) you can find a more complex work on a similiar data.
