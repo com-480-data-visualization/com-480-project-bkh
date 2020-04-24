@@ -3,6 +3,7 @@
     <Header></Header>
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <p></p>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import HelloWorld from "./components/HelloWorld.vue";
 import Header from "./components/header/Header.vue";
+import * as d3 from "d3";
 
 @Component({
   components: {
@@ -17,7 +19,19 @@ import Header from "./components/header/Header.vue";
     Header
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  constructor() {
+    super();
+    d3.select("body")
+      .selectAll("p")
+      .data([4, 8, 15, 16, 23, 42])
+      .enter()
+      .append("p")
+      .text(function(d) {
+        return "I’m number " + d + "!";
+      });
+  }
+}
 </script>
 
 <style lang="scss">
