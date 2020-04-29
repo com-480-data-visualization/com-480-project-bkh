@@ -3,7 +3,8 @@
     <Header></Header>
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-    <p></p>
+    <p>app to view them all</p>
+    <Map></Map>
   </div>
 </template>
 
@@ -11,12 +12,15 @@
 import { Component, Vue } from "vue-property-decorator";
 import HelloWorld from "./components/HelloWorld.vue";
 import Header from "./components/header/Header.vue";
+import Map from "./components/map/Map.vue";
+
 import * as d3 from "d3";
 
 @Component({
   components: {
     HelloWorld,
-    Header
+    Header,
+    Map
   }
 })
 export default class App extends Vue {
