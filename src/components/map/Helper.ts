@@ -1,5 +1,4 @@
 import * as turf from "@turf/turf";
-import { thresholdSturges } from "d3";
 
 function getTriangleArea(
   triangle: [turf.Position, turf.Position, turf.Position]

@@ -49,7 +49,7 @@ export default class Map extends Vue {
       .append("g")
       .attr("transform", "translate(0,0) scale(1)");
 
-    d3.json("/lotr_bg.geo.json").then(bg => {
+    d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_bg.geo.json").then(bg => {
       this.myProjection = d3
         .geoEquirectangular()
         .translate([0, 0])
@@ -58,17 +58,17 @@ export default class Map extends Vue {
       this.path = d3.geoPath().projection(this.myProjection);
 
       const promises = [
-        d3.json("/lotr_land.geo.json"),
-        d3.json("/lotr_trips.geo.json"),
-        d3.json("/lotr_forests.geo.json"),
-        d3.json("/lotr_rivers.geo.json"),
-        d3.json("/lotr_mountains.geo.json"),
-        d3.json("/lotr_text.geo.json"),
-        d3.json("/lotr_lake.geo.json"),
-        d3.json("/lotr_roads.geo.json"),
-        d3.json("/lotr_cities.geo.json"),
-        d3.json("/lotr_peaks.geo.json"),
-        d3.json("/lotr_castles.geo.json")
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_land.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_trips.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_forests.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_rivers.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_mountains.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_text.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_lake.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_roads.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_cities.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_peaks.geo.json"),
+        d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_castles.geo.json")
       ];
       Promise.all(promises).then(x => {
         this.drawLayer(x[0].features, "land");
@@ -259,7 +259,7 @@ export default class Map extends Vue {
       .attr("width", "1.0")
       .attr("height", "1.0")
       .append("image")
-      .attr("xlink:href", "/city.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/city.svg")
       .attr("width", 1.0)
       .attr("height", 1.0)
       .attr("x", 0)
@@ -270,7 +270,7 @@ export default class Map extends Vue {
       .attr("width", "2")
       .attr("height", "2")
       .append("image")
-      .attr("xlink:href", "/city.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/city.svg")
       .attr("width", 2)
       .attr("height", 2)
       .attr("x", 0)
@@ -281,7 +281,7 @@ export default class Map extends Vue {
       .attr("width", "4")
       .attr("height", "4")
       .append("image")
-      .attr("xlink:href", "/city.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/city.svg")
       .attr("width", 4)
       .attr("height", 4)
       .attr("x", 0)
@@ -292,7 +292,7 @@ export default class Map extends Vue {
       .attr("width", "6")
       .attr("height", "6")
       .append("image")
-      .attr("xlink:href", "/city.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/city.svg")
       .attr("width", 6)
       .attr("height", 6)
       .attr("x", 0)
@@ -349,7 +349,7 @@ export default class Map extends Vue {
       .attr("width", "2")
       .attr("height", "2")
       .append("image")
-      .attr("xlink:href", "/peak.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/peak.svg")
       .attr("width", 2)
       .attr("height", 2)
       .attr("x", 0.5)
@@ -360,7 +360,7 @@ export default class Map extends Vue {
       .attr("width", "4")
       .attr("height", "4")
       .append("image")
-      .attr("xlink:href", "/peak.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/peak.svg")
       .attr("width", 4)
       .attr("height", 4)
       .attr("x", 1)
@@ -371,7 +371,7 @@ export default class Map extends Vue {
       .attr("width", "6")
       .attr("height", "6")
       .append("image")
-      .attr("xlink:href", "/peak.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/peak.svg")
       .attr("width", 6)
       .attr("height", 6)
       .attr("x", 1)
@@ -426,7 +426,7 @@ export default class Map extends Vue {
       .attr("width", "2")
       .attr("height", "2")
       .append("image")
-      .attr("xlink:href", "/castle.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/castle.svg")
       .attr("width", 2)
       .attr("height", 2)
       .attr("x", 0.5)
@@ -437,7 +437,7 @@ export default class Map extends Vue {
       .attr("width", "4")
       .attr("height", "4")
       .append("image")
-      .attr("xlink:href", "/castle.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/castle.svg")
       .attr("width", 4)
       .attr("height", 4)
       .attr("x", 1)
@@ -448,7 +448,7 @@ export default class Map extends Vue {
       .attr("width", "6")
       .attr("height", "6")
       .append("image")
-      .attr("xlink:href", "/castle.svg")
+      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/castle.svg")
       .attr("width", 6)
       .attr("height", 6)
       .attr("x", 1)
