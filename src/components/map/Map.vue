@@ -20,12 +20,6 @@
 .forest {
   fill: green;
 }
-@font-face {
-  font-family: Uncial Antiqua;
-  src: url("/UncialAntiqua-Regular.ttf") format("ttf");
-  font-weight: normal;
-  font-style: normal;
-}
 .text {
   font-family: Uncial Antiqua;
 }

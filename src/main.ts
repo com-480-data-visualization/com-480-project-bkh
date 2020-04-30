@@ -8,6 +8,8 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.use(BootstrapVue);
 //Vue.use(BootstrapVueIcons)
 
+require("typeface-uncial-antiqua");
+
 Vue.config.productionTip = false;
 
 new Vue({
