@@ -67,8 +67,13 @@ export default class Script extends Vue {
       .style("opacity", 0)
       .style("left", "820px")
       .style("top", "30px");
-    const promise1 = d3.csv(process.env.VUE_APP_PUBLIC_PATH + "/Movies.csv", this.parseMovieRaw),
-      promise2 = d3.csv(process.env.VUE_APP_PUBLIC_PATH + "/merged_information.csv");
+    const promise1 = d3.csv(
+        process.env.VUE_APP_PUBLIC_PATH + "/Movies.csv",
+        this.parseMovieRaw
+      ),
+      promise2 = d3.csv(
+        process.env.VUE_APP_PUBLIC_PATH + "/merged_information.csv"
+      );
 
     Promise.all([promise1, promise2]).then((x: any) =>
       this.callback(x[0], x[1])

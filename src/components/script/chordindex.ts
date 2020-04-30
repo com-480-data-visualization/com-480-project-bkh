@@ -29,12 +29,12 @@ export function customeChord() {
       chords: any = [],
       groups = (chords.groups = new Array(n)),
       subgroups = new Array(n * m);
-    let k: number = 0,
-      x: number = 0,
-      x0: number = 0,
-      dx: number = 0,
-      i: number = 0,
-      j: number = 0;
+    let k = 0,
+      x = 0,
+      x0 = 0,
+      dx = 0,
+      i = 0,
+      j = 0;
 
     // Compute the sum.
     (k = 0), (i = -1);

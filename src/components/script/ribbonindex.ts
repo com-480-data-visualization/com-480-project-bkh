@@ -50,13 +50,13 @@ export function customeRibbon() {
     let buffer: any = null;
     const argv = slice.call(args);
     // console.log(argv);
-    
-    const s = defaultSource(argv[0]);
-    
-    const t = defaultTarget(argv[0]),
-      sr = +defaultRadius((argv[0] = s, argv)),
-      sa0 = defaultStartAngle(argv[0]) - halfPi,
-      sa1 = defaultEndAngle(argv[0]) - halfPi,
+
+    const s = source(argv[0]);
+
+    const t = target(argv[0]),
+      sr = +radius(((argv[0] = s), argv)),
+      sa0 = startAngle(argv[0]) - halfPi,
+      sa1 = endAngle(argv[0]) - halfPi,
       sx0 = sr * cos(sa0),
       sy0 = sr * sin(sa0),
       sx1 = sr * cos(sa1),
@@ -100,7 +100,7 @@ export function customeRibbon() {
     // context.closePath();
 
     if (buffer) return (context = null), buffer + "" || null;
-  }
+  };
 
   ribbon.radius = function(_: any) {
     return arguments.length
