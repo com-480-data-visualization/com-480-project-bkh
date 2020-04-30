@@ -76,8 +76,8 @@ export default class Map extends Vue {
         // this.drawLayer(x[2].features, "forest");
 
         const biomePromises = [
-          this.fillBiome(x[4].features, 80, 80, "relief-mount-6"),
-          this.fillBiome(x[2].features, 120, 120, "relief-deciduous-1")
+          this.fillBiome(x[4].features, 80, 80, 20,20,"relief-mount-6"),
+          this.fillBiome(x[2].features, 120, 120, 20,20, "relief-deciduous-1")
         ];
 
         Promise.all(biomePromises).then(() => {
@@ -145,22 +145,28 @@ export default class Map extends Vue {
     features: GeoPermissibleObjects[],
     picWidth: number,
     picHeight: number,
+    picOverlapWidth: number,
+    picOverlapHeight: number,
     picName: string
   ) {
     const promises = [];
     for (const feature of features) {
       promises.push(
-        this.generateRandomPointInsidePolygon(feature).then(points => {
+        this.generateRandomPointInsidePolygon(
+          feature,
+          picOverlapWidth,
+          picOverlapHeight
+        ).then(points => {
           //console.log("points");
 
           //console.log(points);
           for (const point of points) {
-            const projected = this.myProjection(point);
-            if (projected)
+            //const projected = this.myProjection(point);
+            //if (projected)
               this.svg
                 .append("use")
-                .attr("x", projected[0] - picWidth / 2)
-                .attr("y", projected[1] - picHeight / 2)
+                .attr("x", point[0] - picWidth / 2)
+                .attr("y", point[1] - picHeight / 2)
                 .attr("width", picWidth)
                 .attr("height", picHeight)
                 .attr("xlink:href", "#" + picName);
@@ -172,16 +178,16 @@ export default class Map extends Vue {
     }
     await Promise.all(promises);
   }
-  max = 0;
-  min = 1;
-  async generateRandomPointInsidePolygon(polygon: any) {
-    const area = d3.polygonArea(polygon.geometry.coordinates[0]);
-    if (area > this.max) this.max = area;
 
-    if (area < this.min) this.min = area;
+  async generateRandomPointInsidePolygon(
+    polygon: any,
+    picOverlapWidth: number,
+    picOverlapHeight: number
+  ) {
+    const area = d3.polygonArea(polygon.geometry.coordinates[0]);
 
     const promise = new Promise<Array<[number, number]>>((resolve, reject) => {
-      const points: Array<[number, number]> = [];
+      let points: Array<[number, number]> = [];
 
       const triangles = turf.tesselate(polygon);
       const ar: Array<[turf.Position, turf.Position, turf.Position]> = [];
@@ -198,17 +204,59 @@ export default class Map extends Vue {
 
       // let limit = 30;
       // if (area >= 0.000002) limit = 300;
-      const limit = area / 1.30406207e-8;
+      const limit = area / 1.30406207e-9;
       const dist = generateDistribution(ar);
       for (let i = 0; i < limit; i += 1) {
         const tr = ar[selectRandomTriangleFromDistribution(dist)];
-        const point = calcRandomPoint(tr);
-        points.push(point);
+        const point = this.myProjection(calcRandomPoint(tr));
+        if(point)
+          points.push(point);
       }
+
+
+      // const res = this.myProjection.invert([picWidth, picHeight])
+      // picWidth = 0.00023
+      // picHeight = 0.00015
+      // console.log(res)
+
+      for (let i = 0; i < points.length; i++) {
+        points = points.filter(
+          x => points[i] == x || 
+            !this.rectanglesIntersect(
+              points[i][0],
+              points[i][1],
+              points[i][0] + picOverlapWidth,
+              points[i][1] + picOverlapHeight,
+              x[0],
+              x[1],
+              x[0] + picOverlapWidth,
+              x[1] + picOverlapHeight
+            )
+        );
+      }
+
       resolve(points);
     });
 
     return promise;
+  }
+
+  public rectanglesIntersect(
+    minAx: number,
+    minAy: number,
+    maxAx: number,
+    maxAy: number,
+    minBx: number,
+    minBy: number,
+    maxBx: number,
+    maxBy: number
+  ) {
+    const aLeftOfB = maxAx < minBx;
+    const aRightOfB = minAx > maxBx;
+    const aAboveB = minAy > maxBy;
+    const aBelowB = maxAy < minBy;
+
+    return !(aLeftOfB || aRightOfB || aAboveB || aBelowB);
   }
 
   mounted() {
@@ -259,7 +307,7 @@ export default class Map extends Vue {
       .attr("width", "1.0")
       .attr("height", "1.0")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/city.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/city.svg")
       .attr("width", 1.0)
       .attr("height", 1.0)
       .attr("x", 0)
@@ -270,7 +318,7 @@ export default class Map extends Vue {
       .attr("width", "2")
       .attr("height", "2")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/city.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/city.svg")
       .attr("width", 2)
       .attr("height", 2)
       .attr("x", 0)
@@ -281,7 +329,7 @@ export default class Map extends Vue {
       .attr("width", "4")
       .attr("height", "4")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/city.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/city.svg")
       .attr("width", 4)
       .attr("height", 4)
       .attr("x", 0)
@@ -292,7 +340,7 @@ export default class Map extends Vue {
       .attr("width", "6")
       .attr("height", "6")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/city.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/city.svg")
       .attr("width", 6)
       .attr("height", 6)
       .attr("x", 0)
@@ -349,7 +397,7 @@ export default class Map extends Vue {
       .attr("width", "2")
       .attr("height", "2")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/peak.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/peak.svg")
       .attr("width", 2)
       .attr("height", 2)
       .attr("x", 0.5)
@@ -360,7 +408,7 @@ export default class Map extends Vue {
       .attr("width", "4")
       .attr("height", "4")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/peak.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/peak.svg")
       .attr("width", 4)
       .attr("height", 4)
       .attr("x", 1)
@@ -371,7 +419,7 @@ export default class Map extends Vue {
       .attr("width", "6")
       .attr("height", "6")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/peak.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/peak.svg")
       .attr("width", 6)
       .attr("height", 6)
       .attr("x", 1)
@@ -426,7 +474,7 @@ export default class Map extends Vue {
       .attr("width", "2")
       .attr("height", "2")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/castle.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/castle.svg")
       .attr("width", 2)
       .attr("height", 2)
       .attr("x", 0.5)
@@ -437,7 +485,7 @@ export default class Map extends Vue {
       .attr("width", "4")
       .attr("height", "4")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/castle.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/castle.svg")
       .attr("width", 4)
       .attr("height", 4)
       .attr("x", 1)
@@ -448,7 +496,7 @@ export default class Map extends Vue {
       .attr("width", "6")
       .attr("height", "6")
       .append("image")
-      .attr("xlink:href",process.env.VUE_APP_PUBLIC_PATH +  "/castle.svg")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/castle.svg")
       .attr("width", 6)
       .attr("height", 6)
       .attr("x", 1)
