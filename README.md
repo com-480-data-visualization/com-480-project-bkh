@@ -49,6 +49,9 @@ Of course, since the data and content is different, in the end they will be two 
 
 **10% of the final grade**
 
+- [Report](./milestone2.pdf)
+- [Website](https://com-480-data-visualization.github.io/com-480-project-bkh/)
+
 
 
 
