@@ -365,46 +365,46 @@ export default class Script extends Vue {
 
   /* display text on hover for circles and chords */
   displayFieldSet(i: any, type: string) {
-    this.div2.style("opacity", 0.9);
-    let legend;
-    let fields: any = {};
-    if (type == "character") {
-      legend = this.words[i].key;
-      fields["Race"] = this.words[i].race;
-      fields["Birth"] = this.words[i].birth;
-      fields["Death"] = this.words[i].death;
-      fields["Hair Color"] = this.words[i].hair;
-      fields["Height"] = this.words[i].height;
-      fields["Gender"] = this.words[i].gender;
-      fields["Total Words in the Series"] = this.words[i].sum;
-      fields["Words in " + this.movies[0].Name] = this.words[i].wordsList[0];
-      fields["Words in " + this.movies[1].Name] = this.words[i].wordsList[1];
-      fields["Words in " + this.movies[2].Name] = this.words[i].wordsList[2];
-    } else if (type == "movie") {
-      legend = this.movies[i].Name;
-      fields = {
-        "Runtime In Minutes": this.movies[i].runtime,
-        "Budget In Millions": this.movies[i].budget,
-        "Box Office Revenue In Millions": this.movies[i].boxRevenue,
-        "Academy Award Nominations": this.movies[i].nominations,
-        "Academy Award Wins": this.movies[i].wins,
-        "Rotten Tomatoes Score": this.movies[i].score
-      };
-    } else return;
-    d3.select("fieldset").remove();
-    const fieldset = this.div2.append("fieldset");
-    fieldset.append("legend").html(legend);
-    for (const key in fields) {
-      fieldset
-        .append("li")
-        .html("<strong>" + key + "</strong>: " + fields[key])
-        .style("color", () => {
-          if (key == "race") {
-            return this.color(fields[key]);
-          }
-          return "black";
-        });
-    }
+    // this.div2.style("opacity", 0.9);
+    // let legend;
+    // let fields: any = {};
+    // if (type == "character") {
+    //   legend = this.words[i].key;
+    //   fields["Race"] = this.words[i].race;
+    //   fields["Birth"] = this.words[i].birth;
+    //   fields["Death"] = this.words[i].death;
+    //   fields["Hair Color"] = this.words[i].hair;
+    //   fields["Height"] = this.words[i].height;
+    //   fields["Gender"] = this.words[i].gender;
+    //   fields["Total Words in the Series"] = this.words[i].sum;
+    //   fields["Words in " + this.movies[0].Name] = this.words[i].wordsList[0];
+    //   fields["Words in " + this.movies[1].Name] = this.words[i].wordsList[1];
+    //   fields["Words in " + this.movies[2].Name] = this.words[i].wordsList[2];
+    // } else if (type == "movie") {
+    //   legend = this.movies[i].Name;
+    //   fields = {
+    //     "Runtime In Minutes": this.movies[i].runtime,
+    //     "Budget In Millions": this.movies[i].budget,
+    //     "Box Office Revenue In Millions": this.movies[i].boxRevenue,
+    //     "Academy Award Nominations": this.movies[i].nominations,
+    //     "Academy Award Wins": this.movies[i].wins,
+    //     "Rotten Tomatoes Score": this.movies[i].score
+    //   };
+    // } else return;
+    // d3.select("fieldset").remove();
+    // const fieldset = this.div2.append("fieldset");
+    // fieldset.append("legend").html(legend);
+    // for (const key in fields) {
+    //   fieldset
+    //     .append("li")
+    //     .html("<strong>" + key + "</strong>: " + fields[key])
+    //     .style("color", () => {
+    //       if (key == "race") {
+    //         return this.color(fields[key]);
+    //       }
+    //       return "black";
+    //     });
+    // }
   }
 
   /* display the small text on hover for each chord group */
@@ -429,40 +429,40 @@ export default class Script extends Vue {
       .transition()
       .style("opacity", 0.1);
 
-    const charInd = Math.floor(i / 3);
-    const movieInd = d.source.subindex;
-    // var text = words[i].key;
-    // console.log(movieIntro[d.source.subindex])
-    this.div2.style("opacity", 0.9);
-    const fields: any = {};
-    fields["Movie"] = this.movies[movieInd].Name;
-    fields["Character"] = this.words[charInd].key;
-    fields["Race"] = this.words[charInd].race;
-    fields["Birth"] = this.words[charInd].birth;
-    fields["Death"] = this.words[charInd].death;
-    fields["Hair Color"] = this.words[charInd].hair;
-    fields["Height"] = this.words[charInd].height;
-    fields["Gender"] = this.words[charInd].gender;
-    fields["Words"] = this.words[charInd].wordsList[movieInd];
-    d3.select("fieldset").remove();
-    const fieldset = this.div2.append("fieldset");
-    const legend: string =
-      this.words[charInd].key + " in " + this.movies[movieInd].Name;
-    fieldset.append("legend").html(legend);
-    let flag = 0;
-    for (const key in fields) {
-      let type = "ul";
-      if (flag == 0) type = "li";
-      fieldset
-        .append(type)
-        .html("<strong>" + key + "</strong>: " + fields[key])
-        .style("color", function() {
-          return "black";
-        });
-      if (key == "Character") {
-        flag = 1;
-      }
-    }
+    // const charInd = Math.floor(i / 3);
+    // const movieInd = d.source.subindex;
+    // // var text = words[i].key;
+    // // console.log(movieIntro[d.source.subindex])
+    // this.div2.style("opacity", 0.9);
+    // const fields: any = {};
+    // fields["Movie"] = this.movies[movieInd].Name;
+    // fields["Character"] = this.words[charInd].key;
+    // fields["Race"] = this.words[charInd].race;
+    // fields["Birth"] = this.words[charInd].birth;
+    // fields["Death"] = this.words[charInd].death;
+    // fields["Hair Color"] = this.words[charInd].hair;
+    // fields["Height"] = this.words[charInd].height;
+    // fields["Gender"] = this.words[charInd].gender;
+    // fields["Words"] = this.words[charInd].wordsList[movieInd];
+    // d3.select("fieldset").remove();
+    // const fieldset = this.div2.append("fieldset");
+    // const legend: string =
+    //   this.words[charInd].key + " in " + this.movies[movieInd].Name;
+    // fieldset.append("legend").html(legend);
+    // let flag = 0;
+    // for (const key in fields) {
+    //   let type = "ul";
+    //   if (flag == 0) type = "li";
+    //   fieldset
+    //     .append(type)
+    //     .html("<strong>" + key + "</strong>: " + fields[key])
+    //     .style("color", function() {
+    //       return "black";
+    //     });
+    //   if (key == "Character") {
+    //     flag = 1;
+    //   }
+    // }
 
     d3.selectAll(".bubbles g")
       .filter(function(e, index) {
