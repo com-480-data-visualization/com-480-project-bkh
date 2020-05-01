@@ -131,7 +131,7 @@ export function customeChord() {
     return arguments.length
       ? (_ == null
           ? (sortChords = null)
-          : ((sortChords = compareValue(_))._ = _),
+          : (((sortChords = compareValue(_)) as any)._ = _),
         chord)
       : sortChords && sortChords._;
   };

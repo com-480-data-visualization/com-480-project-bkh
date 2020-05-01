@@ -138,7 +138,7 @@ export default class Script extends Vue {
       .key(function(d: any) {
         return d.char;
       })
-      .rollup((v: any) => {
+      .rollup((v: any[]): any => {
         const array = [0, 0, 0];
         v.forEach((e: any) => {
           const index = this.movieIndexByName.get(e.movie).index;

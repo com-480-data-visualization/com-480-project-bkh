@@ -1,32 +1,5 @@
 <style lang="scss">
-html {
-  margin: 30px;
-}
 
-h1 {
-  font-family: cursive;
-  font-size: 28px;
-  color: #423127;
-  position: absolute;
-  font-weight: bolder;
-}
-
-body {
-  font: 10px sans-serif;
-}
-
-img {
-  width: 100px;
-}
-
-#header {
-  position: relative;
-  width: 600px;
-  display: block;
-  margin-left: 350px;
-  margin-right: auto;
-  float: middle;
-}
 
 .group-tick line {
   stroke: #000;
@@ -52,7 +25,7 @@ div.tooltip1 {
   pointer-events: none;
 }
 
-div.tooltip2 {
+ div.tooltip2 {
   position: absolute;
   text-align: left;
   width: 500px;
@@ -69,13 +42,13 @@ fieldset {
   width: 550px;
 }
 
-legend {
+ legend {
   text-align: center;
   font-size: 20px;
   color: #423127;
 }
 
-li {
+ li {
   margin: 8px;
   list-style: none;
 }
