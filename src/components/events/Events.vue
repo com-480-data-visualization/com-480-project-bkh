@@ -6,7 +6,7 @@ svg{font: 11px sans-serif;}
 </style>
 <template>
   <div id="Events">
-    <p>Events here</p>
+    <p>Timeline for the kings of Gondor(Incomplete)</p>
   </div>
 </template>
 

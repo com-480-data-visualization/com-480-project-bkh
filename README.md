@@ -48,6 +48,7 @@ Of course, since the data and content is different, in the end they will be two 
 ## Milestone 2 (Friday 1st May, 5pm)
 
 **10% of the final grade**
+For this milestone we used Vue and typescript(mainly d3) for our website. We made 3 main charts: chord diagram, map and timeline. But, note that the website is incomplete and just the skeleton of our future work. Below you can find our report and website. 
 
 - [Report](./milestone2.pdf)
 - [Website](https://com-480-data-visualization.github.io/com-480-project-bkh/)
