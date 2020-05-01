@@ -1,49 +1,42 @@
 <template>
   <div id="app">
     <Header></Header>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome123 to Your Vue.js + TypeScript App" />
-    <p>app to view them all</p>
+    <div>
+      <b-img
+        src="https://www.ecopetit.cat/wpic/mpic/49-491631_fellowship-of-the-ring-line.jpg"
+        fluid-grow
+        alt="Responsive image"
+      ></b-img>
+    </div>
+    <!-- <p>app to view them all</p> -->
     <Map></Map>
+    <Script></Script>
+    <Footer></Footer>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
 import Header from "./components/header/Header.vue";
 import Map from "./components/map/Map.vue";
+import Script from "./components/script/Script.vue";
+import Footer from "./components/footer/Footer.vue";
 
 import * as d3 from "d3";
 
 @Component({
   components: {
-    HelloWorld,
     Header,
-    Map
+    Map,
+    Script,
+    Footer
   }
 })
 export default class App extends Vue {
-  constructor() {
-    super();
-    d3.select("body")
-      .selectAll("p")
-      .data([4, 8, 15, 16, 23, 42])
-      .enter()
-      .append("p")
-      .text(function(d) {
-        return "I’m number " + d + "!";
-      });
-  }
+
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+
 </style>

@@ -1,7 +1,7 @@
 <style scoped lang="scss"></style>
 
 <template>
-  <b-navbar toggleable="lg" type="dark" variant="info">
+  <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top">
     <!--fixed="top"-->
     <b-navbar-brand href="#">Lord of the rings</b-navbar-brand>
 

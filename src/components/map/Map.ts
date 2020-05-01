@@ -34,14 +34,18 @@ export default class Map extends Vue {
   }
 
   drawMap() {
-    const zoom = d3
-      .zoom()
-      .scaleExtent([1, 54])
-      .on("zoom", this.zoomed);
-
     this.def = d3.select("#mapsvg").select("defs");
 
     this.svg = d3.select("#viewbox");
+
+    const zoom = d3
+      .zoom()
+      .scaleExtent([1, 54])
+      .translateExtent([
+        [0, 0],
+        [7850 - 300, 11200]
+      ])
+      .on("zoom", this.zoomed);
 
     this.svg.call(zoom);
 
@@ -76,8 +80,8 @@ export default class Map extends Vue {
         // this.drawLayer(x[2].features, "forest");
 
         const biomePromises = [
-          this.fillBiome(x[4].features, 80, 80, 20,20,"relief-mount-6"),
-          this.fillBiome(x[2].features, 120, 120, 20,20, "relief-deciduous-1")
+          this.fillBiome(x[4].features, 80, 80, 20, 20, "relief-mount-6"),
+          this.fillBiome(x[2].features, 120, 120, 20, 20, "relief-deciduous-1")
         ];
 
         Promise.all(biomePromises).then(() => {
@@ -163,13 +167,13 @@ export default class Map extends Vue {
           for (const point of points) {
             //const projected = this.myProjection(point);
             //if (projected)
-              this.svg
-                .append("use")
-                .attr("x", point[0] - picWidth / 2)
-                .attr("y", point[1] - picHeight / 2)
-                .attr("width", picWidth)
-                .attr("height", picHeight)
-                .attr("xlink:href", "#" + picName);
+            this.svg
+              .append("use")
+              .attr("x", point[0] - picWidth / 2)
+              .attr("y", point[1] - picHeight / 2)
+              .attr("width", picWidth)
+              .attr("height", picHeight)
+              .attr("xlink:href", "#" + picName);
             //.attr("filter", "url(#pencilTexture4");
             //        <use xlink:href="#relief-mount-6" width="40" height="40"></use>
           }
@@ -209,10 +213,8 @@ export default class Map extends Vue {
       for (let i = 0; i < limit; i += 1) {
         const tr = ar[selectRandomTriangleFromDistribution(dist)];
         const point = this.myProjection(calcRandomPoint(tr));
-        if(point)
-          points.push(point);
+        if (point) points.push(point);
       }
-
 
       // const res = this.myProjection.invert([picWidth, picHeight])
       // picWidth = 0.00023
@@ -221,7 +223,8 @@ export default class Map extends Vue {
 
       for (let i = 0; i < points.length; i++) {
         points = points.filter(
-          x => points[i] == x || 
+          x =>
+            points[i] == x ||
             !this.rectanglesIntersect(
               points[i][0],
               points[i][1],
@@ -270,8 +273,8 @@ export default class Map extends Vue {
   zoomed() {
     const zoombuttonScale = d3.event.transform.k;
     this.svg
-      .transition()
-      .duration(500)
+      // .transition()
+      // .duration(500)
       .attr("transform", d3.event.transform);
 
     this.observeZoomingVisibility(".zoom1", 1, 4, zoombuttonScale);
