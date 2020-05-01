@@ -18,7 +18,7 @@ export default class Events extends Vue {
     { id: "Tarannon", start: 830, end: 913, age: 1, startLabel: "", endLabel: "" ,color:"#b861ef"},
     { id: "...", start: 913, end: 913, age: 1, startLabel: "", endLabel: "" ,color:"#b861ef"}];
     height = 300;
-    width  =1500;
+    width  =1200;
     margin = ({top: 30, right: 30, bottom: 30, left: 30});
     x:any;
     y:any;
