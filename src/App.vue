@@ -9,8 +9,9 @@
       ></b-img>
     </div>
     <!-- <p>app to view them all</p> -->
-    <Map></Map>
     <Script></Script>
+    <Map></Map>
+
     <Footer></Footer>
   </div>
 </template>
