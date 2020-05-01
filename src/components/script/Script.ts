@@ -10,10 +10,10 @@ export default class Script extends Vue {
     "#CFA07E",
     "#C4BAA1",
     "#C2B6BF",
-    "#121212",
+    "#9C7989",
     "#8FB5AA",
     "#85889E",
-    "#9C7989",
+    "#121212",
     "#91919C"
   ];
   color!: any;
