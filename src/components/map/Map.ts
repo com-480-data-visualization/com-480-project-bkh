@@ -49,7 +49,7 @@ export default class Map extends Vue {
       ])
       .on("zoom", this.zoomed);
 
-    d3.select("#mapsvg")
+    (d3.select("#mapsvg") as any)
       .call(zoom)
       .call(zoom.transform, transform);
 
