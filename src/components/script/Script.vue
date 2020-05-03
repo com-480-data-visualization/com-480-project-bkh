@@ -1,6 +1,4 @@
 <style lang="scss">
-
-
 .group-tick line {
   stroke: #000;
 }
@@ -25,7 +23,7 @@ div.tooltip1 {
   pointer-events: none;
 }
 
- div.tooltip2 {
+div.tooltip2 {
   position: absolute;
   text-align: left;
   width: 500px;
@@ -42,13 +40,13 @@ fieldset {
   width: 550px;
 }
 
- legend {
+legend {
   text-align: center;
   font-size: 20px;
   color: #423127;
 }
 
- li {
+li {
   margin: 8px;
   list-style: none;
 }

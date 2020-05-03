@@ -38,27 +38,31 @@ export default class Map extends Vue {
 
     this.svg = d3.select("#viewbox");
 
+    const transform = d3.zoomIdentity.translate(-5300, 0).scale(2.5);
+
     const zoom = d3
       .zoom()
-      .scaleExtent([1, 54])
+      .scaleExtent([2.5, 54])
       .translateExtent([
-        [0, 0],
-        [7850 - 300, 11200]
+        [700, 0],
+        [6700, 4600]
       ])
       .on("zoom", this.zoomed);
 
-    this.svg.call(zoom);
+    d3.select("#mapsvg")
+      .call(zoom)
+      .call(zoom.transform, transform);
 
-    this.svg = this.svg
-      .append("g")
-      .attr("transform", "translate(0,0) scale(1)");
+    // this.svg = this.svg
+    //   .append("g")
+    //   .attr("transform", transform);
 
     d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_bg.geo.json").then(bg => {
       this.myProjection = d3
         .geoEquirectangular()
         .translate([0, 0])
         .scale(8400000);
-      // this.myProjection.fitSize([width, height], bg);
+      //this.myProjection.fitSize([7850, 11200], bg);
       this.path = d3.geoPath().projection(this.myProjection);
 
       const promises = [
@@ -266,6 +270,30 @@ export default class Map extends Vue {
     const height = 1500;
     const width = 1500;
     this.drawMap();
+
+    $(window).resize(() => {
+      this.mapResize();
+    });
+  }
+
+  mapResize() {
+    const svgContainer = $("#mapsvg");
+    const width = svgContainer.width();
+    const height = svgContainer.height();
+    if (width && height) {
+      const aspect = width / height;
+      const container = svgContainer.parent();
+      const svg = d3.select("#mapsvg");
+
+      const targetWidth = container.width();
+
+      if (targetWidth) {
+        svg.attr("width", targetWidth);
+        svg.attr("height", Math.round(targetWidth / aspect));
+      }
+
+      this.myProjection.translate([width / 2, height / 2]).scale(width);
+    }
   }
 
   g: any;

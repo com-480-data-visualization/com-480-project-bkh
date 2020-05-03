@@ -42,8 +42,14 @@
 </style>
 
 <template>
-  <div style="height: 2000px">
-    <svg id="mapsvg" viewBox="-300 0 7850 11200">
+  <div>
+    <svg
+      id="mapsvg"
+      preserveAspectRatio="xMidYMid"
+      height="900"
+      width="1400"
+      viewBox="0 0 7850 11200"
+    >
       <defs>
         <symbol id="relief-mount-2" viewBox="-5 -5 50 50">
           <polygon
