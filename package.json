@@ -19,6 +19,7 @@
     "jquery": "^3.5.0",
     "typeface-uncial-antiqua": "0.0.71",
     "vue": "^2.6.11",
+    "vue-bootstrap-typeahead": "^0.2.6",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.1"
   },

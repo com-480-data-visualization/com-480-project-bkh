@@ -13,7 +13,6 @@
     <Map></Map>
     <Events></Events>
     <Footer></Footer>
-    
   </div>
 </template>
 
@@ -32,15 +31,11 @@ import * as d3 from "d3";
     Header,
     Map,
     Script,
-     Events,
+    Events,
     Footer
   }
 })
-export default class App extends Vue {
-
-}
+export default class App extends Vue {}
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

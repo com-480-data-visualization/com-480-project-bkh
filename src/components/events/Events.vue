@@ -1,8 +1,7 @@
-
 <style type="text/css">
-
-svg{font: 11px sans-serif;}
-
+svg {
+  font: 11px sans-serif;
+}
 </style>
 <template>
   <div id="Events">

@@ -2,6 +2,7 @@ import { Component, Vue } from "vue-property-decorator";
 import * as d3 from "d3";
 import * as turf from "@turf/turf";
 import $ from "jquery";
+import Typeahead from "../typeahead/Typeahead.vue";
 
 import { GeoProjection, GeoPath, GeoPermissibleObjects } from "d3";
 import {
@@ -10,13 +11,92 @@ import {
   selectRandomTriangleFromDistribution
 } from "./Helper";
 
-@Component
-export default class Map extends Vue {
+@Component({
+  components: {
+    Typeahead
+  }
+})
+export default class LotrMap extends Vue {
   svg!: d3.Selection<any, any, HTMLElement, any>;
   path!: GeoPath<any, GeoPermissibleObjects>;
   myProjection!: GeoProjection;
   def!: d3.Selection<any, any, HTMLElement, any>;
+  zoom!: d3.ZoomBehavior<any, any>;
 
+  places: Array<any> = [];
+
+  hobbitTrips: Array<any> = [
+    { text: "Bilbo", value: "wp-bilbo" },
+    { text: "Thorin", value: "wp-thorin" },
+    { text: "Other Dwarfs", value: "wp-dwarfs" },
+    { text: "Gandalf", value: "wp-gandalf-hobbit" }
+  ];
+  LotrTrips: Array<any> = [
+    { text: "Frodo with Sam", value: "wp-frodo" },
+    { text: "Aragon", value: "wp-aragorn" },
+    { text: "Gandalf", value: "wp-gandalf-lotr" },
+    { text: "Legolas with Gimli", value: "wp-legogimli" },
+    { text: "Merry", value: "wp-merry" },
+    { text: "Pippin", value: "wp-pippin" },
+    { text: "Boromir", value: "wp-boromir" }
+  ];
+
+  hobbitTripsSelected: Array<string> = [];
+  LotrTripsSelected: Array<string> = [];
+
+  selectTrip() {
+    Vue.nextTick(()=> {
+    $(".trip").hide();
+    for (const trip of this.hobbitTripsSelected) {
+      $("." + trip).show();
+    }
+    for (const trip of this.LotrTripsSelected) {
+      $("." + trip).show();
+    }
+  })
+
+  }
+  selectPlace(place: any) {
+    console.log(place);
+
+    const centroid = this.path.centroid(place as GeoPermissibleObjects);
+    let x = centroid[0];
+    let y = centroid[1];
+
+    //const proj = this.myProjection([x,y])
+
+    let k = 0;
+    if (place.properties.zoom == 1) {
+      k = 4;
+    } else if (place.properties.zoom == 2) {
+      k = 6;
+    } else if (place.properties.zoom == 3) {
+      k = 30;
+    } else if (place.properties.zoom == 4) {
+      k = 40;
+    } else {
+      k = 50;
+    }
+
+    const height = $("#mapsvg").height();
+    const width = $("#mapsvg").width();
+
+    console.log(width);
+    console.log(height);
+
+    if (height && width) {
+      x = x - width / 7;
+      y = y - height / 5;
+      console.log(x);
+      console.log(y);
+      const transform = d3.zoomIdentity
+        .translate(width / 2, height / 2)
+        .scale(k)
+        .translate(-x, -y);
+
+      (d3.select("#mapsvg") as any).call(this.zoom.transform, transform);
+    }
+  }
   drawLayer(features: GeoPermissibleObjects[], className: string) {
     const container = this.svg.append("g");
     const i = 0;
@@ -33,6 +113,24 @@ export default class Map extends Vue {
     // .attr("stroke-width",1);
   }
 
+  drawTrips(features: GeoPermissibleObjects[]) {
+    const container = this.svg.append("g");
+    const i = 0;
+    container
+      .selectAll("path")
+      .data(features)
+      .enter()
+      .append("path")
+      .attr("d", x => this.path(x as GeoPermissibleObjects))
+      //.attr("id", x => { i++; return i;})
+      .attr("class", (x: any) => "trip " + x.properties.eventname);
+    //.attr("filter", "url(#mid-sepia)");
+    // .attr("stroke-miterlimit",10)
+    // .attr("stroke-width",1);
+
+    $(".trip").hide();
+  }
+
   drawMap() {
     this.def = d3.select("#mapsvg").select("defs");
 
@@ -40,7 +138,7 @@ export default class Map extends Vue {
 
     const transform = d3.zoomIdentity.translate(-5300, 0).scale(2.5);
 
-    const zoom = d3
+    this.zoom = d3
       .zoom()
       .scaleExtent([2.5, 54])
       .translateExtent([
@@ -50,8 +148,8 @@ export default class Map extends Vue {
       .on("zoom", this.zoomed);
 
     (d3.select("#mapsvg") as any)
-      .call(zoom)
-      .call(zoom.transform, transform);
+      .call(this.zoom)
+      .call(this.zoom.transform, transform);
 
     // this.svg = this.svg
     //   .append("g")
@@ -96,7 +194,37 @@ export default class Map extends Vue {
           this.drawPeaks(x[9].features);
           this.drawCastles(x[10].features);
 
-          this.drawLayer(x[1].features, "trip");
+
+          //this.drawLayer(x[1].features, "trip");
+
+          this.drawTrips(x[1].features);
+
+          //console.log(x[5])
+          this.places = x[5].features;
+
+          this.places.map((z: any) => {
+            let text = z.properties.name_EN.trim();
+            if (
+              (text[1] === " " && text[3] === " ") ||
+              (text[1] === " " && text[2] === " ")
+            ) {
+              text = text.replace(/\s/g, "").toLowerCase();
+              text = text.charAt(0).toUpperCase() + text.slice(1);
+            }
+            z.nameEnNormalized = text;
+          });
+
+          const result = [];
+          const map = new Map();
+          for (const item of this.places) {
+            if (!map.has(item.nameEnNormalized)) {
+              map.set(item.nameEnNormalized, true); // set any value to Map
+              result.push(item);
+            }
+          }
+
+          this.places = result;
+          console.log(this.places);
 
           const container = d3.select("defs").append("g");
           container
@@ -271,6 +399,7 @@ export default class Map extends Vue {
     const width = 1500;
     this.drawMap();
 
+    this.mapResize();
     $(window).resize(() => {
       this.mapResize();
     });
@@ -291,8 +420,8 @@ export default class Map extends Vue {
         svg.attr("width", targetWidth);
         svg.attr("height", Math.round(targetWidth / aspect));
       }
-
-      this.myProjection.translate([width / 2, height / 2]).scale(width);
+      if(this.myProjection)
+        this.myProjection.translate([width / 2, height / 2]).scale(width);
     }
   }
 
@@ -310,6 +439,24 @@ export default class Map extends Vue {
     this.observeZoomingVisibility(".zoom3", 4, 54, zoombuttonScale);
     this.observeZoomingVisibility(".zoom4", 9, 54, zoombuttonScale);
     this.observeZoomingVisibility(".zoom5", 30, 54, zoombuttonScale);
+  }
+  zoomIn() {
+    this.zoom.scaleBy(
+      d3
+        .select("#mapsvg")
+        .transition()
+        .duration(750),
+      1.2
+    );
+  }
+  zoomOut() {
+    this.zoom.scaleBy(
+      d3
+        .select("#mapsvg")
+        .transition()
+        .duration(750),
+      0.8
+    );
   }
 
   observeZoomingVisibility(
