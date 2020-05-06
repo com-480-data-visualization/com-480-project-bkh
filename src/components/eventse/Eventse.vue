@@ -12,7 +12,7 @@ svg{font: 11px sans-serif;}
 </style>
 <template>
   <div id="Events">
-    <p>Timeline for the kings of Gondor(Deneme olan)</p>
+    <p>Timeline for the kings of Gondor</p>
   </div>
 </template>
 
