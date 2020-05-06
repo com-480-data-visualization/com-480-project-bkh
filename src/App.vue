@@ -11,7 +11,7 @@
     <!-- <p>app to view them all</p> -->
     <Script></Script>
     <Map></Map>
-    <Events></Events>
+    <Eventse></Eventse>
     <Footer></Footer>
   </div>
 </template>
@@ -22,7 +22,7 @@ import Header from "./components/header/Header.vue";
 import Map from "./components/map/Map.vue";
 import Script from "./components/script/Script.vue";
 import Footer from "./components/footer/Footer.vue";
-import Events from "./components/events/Events.vue";
+import Eventse from "./components/eventse/Eventse.vue";
 
 import * as d3 from "d3";
 
@@ -31,7 +31,7 @@ import * as d3 from "d3";
     Header,
     Map,
     Script,
-    Events,
+    Eventse,
     Footer
   }
 })
