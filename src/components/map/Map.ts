@@ -45,16 +45,38 @@ export default class LotrMap extends Vue {
   LotrTripsSelected: Array<string> = [];
 
   selectTrip() {
-    Vue.nextTick(()=> {
-    $(".trip").hide();
-    for (const trip of this.hobbitTripsSelected) {
-      $("." + trip).show();
-    }
-    for (const trip of this.LotrTripsSelected) {
-      $("." + trip).show();
-    }
-  })
+    Vue.nextTick(() => {
+      //$(".trip").hide();
+      // for (const trip of this.hobbitTripsSelected) {
+      //   $("." + trip).show();
+      // }
+      this.changeTripsDisplay(this.hobbitTrips, this.hobbitTripsSelected)
 
+      this.changeTripsDisplay(this.LotrTrips, this.LotrTripsSelected)
+    });
+  }
+
+  changeTripsDisplay(trips: Array<any>, selectedTrips: Array<any>) {
+
+    for (const trip of trips) {
+      if (selectedTrips.indexOf(trip.value) != -1) {
+
+        $("." + trip.value).show();
+
+
+        // const visibleLen = $("." + trip.value + ":visible").length;
+        // const overallLen = $("." + trip.value).length;
+        // if (visibleLen != overallLen) {
+        //   $("." + trip.value).show();
+        //   console.log("aaa");
+        // }
+      } else {
+        let selector = "." + trip.value;
+        for (const selected of selectedTrips)
+          selector += ":not(." + selected + ")";
+        $(selector).hide();
+      }
+    }
   }
   selectPlace(place: any) {
     console.log(place);
@@ -193,7 +215,6 @@ export default class LotrMap extends Vue {
           this.drawCities(x[8].features);
           this.drawPeaks(x[9].features);
           this.drawCastles(x[10].features);
-
 
           //this.drawLayer(x[1].features, "trip");
 
@@ -420,7 +441,7 @@ export default class LotrMap extends Vue {
         svg.attr("width", targetWidth);
         svg.attr("height", Math.round(targetWidth / aspect));
       }
-      if(this.myProjection)
+      if (this.myProjection)
         this.myProjection.translate([width / 2, height / 2]).scale(width);
     }
   }

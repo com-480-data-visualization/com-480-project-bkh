@@ -65,6 +65,10 @@
   margin-bottom: 5px;
   cursor: pointer;
 }
+h3 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 </style>
 
 <template>
@@ -455,6 +459,7 @@
           search-field-name="nameEnNormalized"
           class="search-bar"
           @select="selectPlace"
+          placeholder="Find place"
         />
         <h3>Hobbit Trips</h3>
         <div>

@@ -14,6 +14,9 @@ export default class Typeahead extends Vue {
   @Prop({ default: null, type: String })
   searchFieldName!: string;
 
+  @Prop({ default: null, type: String })
+  placeholder!: string;
+
   @PropSync("model", { type: Array })
   modelVal!: Array<any>;
 

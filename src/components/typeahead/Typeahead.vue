@@ -5,6 +5,7 @@
     v-model="searchText"
     :data="searchData"
     @hit="select"
+    :placeholder="placeholder"
   />
 </template>
 
