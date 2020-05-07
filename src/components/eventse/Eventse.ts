@@ -7,50 +7,50 @@ export default class Eventse extends Vue {
 
   timelines = ["A","B","C"];
 
-  data = [
-    {preview : "K",id: 'Elendil', start: 3320, end: 3441, 'age': "SA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Isildur', start: 3441, end: 3460, 'age': "SA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Isildur', start: 0, end: 2, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Meneldil', start: 2, end: 158, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Cemendur', start: 158, end: 238, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Eärendil of Gondor', start: 238, end: 324, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Anardil', start: 324, end: 411, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Ostoher', start: 411, end: 491, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Rómendacil I', start: 491, end: 541, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Turambar', start: 541, end: 667, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Atanatar I', start: 667, end: 748, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Siriondil', start: 748, end: 830, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Tarannon Falastur', start: 830, end: 913, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Eärnil I', start: 913, end: 936, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Ciryandil', start: 936, end: 1015, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Hyarmendacil I', start: 1015, end: 1149, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Atanatar II', start: 1149, end: 1226, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Narmacil I', start: 1226, end: 1294, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Calmacil', start: 1294, end: 1304, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
+  data = [{preview : "nan",id: 'Gondor has not been founded yet', start: 0, end: 2820, 'age': "SA", startLabel: "", endLabel: "",color:"#BFBFBF"},
+    {preview : "K",id: 'Elendil', start: 2820, end: 2941, 'age': "SA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Isildur', start: 2941, end: 2960, 'age': "SA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Isildur', start: 0, end: 2, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Meneldil', start: 2, end: 158, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Cemendur', start: 158, end: 238, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Eärendil of Gondor', start: 238, end: 324, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Anardil', start: 324, end: 411, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Ostoher', start: 411, end: 491, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Rómendacil I', start: 491, end: 541, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Turambar', start: 541, end: 667, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Atanatar I', start: 667, end: 748, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Siriondil', start: 748, end: 830, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Tarannon Falastur', start: 830, end: 913, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Eärnil I', start: 913, end: 936, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Ciryandil', start: 936, end: 1015, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Hyarmendacil I', start: 1015, end: 1149, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Atanatar II', start: 1149, end: 1226, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Narmacil I', start: 1226, end: 1294, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Calmacil', start: 1294, end: 1304, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
   {preview : "No-one",id: 'No-one', start: 1304, end: 1366, 'age': "TA", startLabel: "", endLabel: "",color:"#FFC0CB"},
-  {preview : "K",id: 'Valacar', start: 1366, end: 1432, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Eldacar of Gondor', start: 1432, end: 1437, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Castamir the Usurper', start: 1437, end: 1447, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Dummy', start: 1447, end: 1490, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Aldamir', start: 1490, end: 1540, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Hyarmendacil II', start: 1540, end: 1621, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Minardil', start: 1621, end: 1634, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Telemnar', start: 1634, end: 1636, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Tarondor', start: 1636, end: 1798, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Telumehtar', start: 1798, end: 1850, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Narmacil II', start: 1850, end: 1856, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Calimehtar', start: 1856, end: 1936, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Ondoher', start: 1936, end: 1944, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Eärnil II', start: 1945, end: 2043, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Eärnur', start: 2043, end: 2050, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "Gondor Destroyed",id: 'Gondor Destroyed', start: 2050, end: 3019, 'age': "TA", startLabel: "", endLabel: "",color:"#ff0000"},
-  {preview : "K",id: 'Aragorn II Elessar', start: 3019, end: 3021, 'age': "TA", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Aragorn II Elessar', start: 0, end: 120, 'age': "FO", startLabel: "", endLabel: "",color:"#69b3a2"},
-  {preview : "K",id: 'Eldarion', start: 120, end: 220, 'age': "FO", startLabel: "", endLabel: "",color:"#69b3a2"}]
+  {preview : "K",id: 'Valacar', start: 1366, end: 1432, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Eldacar of Gondor', start: 1432, end: 1437, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Castamir the Usurper', start: 1437, end: 1447, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Dummy', start: 1447, end: 1490, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Aldamir', start: 1490, end: 1540, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Hyarmendacil II', start: 1540, end: 1621, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Minardil', start: 1621, end: 1634, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Telemnar', start: 1634, end: 1636, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Tarondor', start: 1636, end: 1798, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Telumehtar', start: 1798, end: 1850, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Narmacil II', start: 1850, end: 1856, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Calimehtar', start: 1856, end: 1936, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Ondoher', start: 1936, end: 1944, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Eärnil II', start: 1945, end: 2043, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Eärnur', start: 2043, end: 2050, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "Gondor Destroyed",id: 'Gondor Destroyed', start: 2050, end: 3019, 'age': "TA", startLabel: "", endLabel: "",color:"#FF6666"},
+  {preview : "K",id: 'Aragorn II Elessar', start: 3019, end: 3021, 'age': "TA", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Aragorn II Elessar', start: 0, end: 120, 'age': "FO", startLabel: "", endLabel: "",color:"#FBC779"},
+  {preview : "K",id: 'Eldarion', start: 120, end: 220, 'age': "FO", startLabel: "", endLabel: "",color:"#FBC779"}]
   
     margin = ({top: 20, right: 20, bottom: 200, left: 5});
     margin2 = {top: 860, right: 20, bottom: 40, left: 5}
-    width = 1400 - this.margin.left - this.margin.right;
+    width = 1200 - this.margin.left - this.margin.right;
     height = 1000 - this.margin.top - this.margin.bottom;
     focusHeight = 1000 - this.margin2.top - this.margin2.bottom;
     x:any;
@@ -114,7 +114,8 @@ export default class Eventse extends Vue {
         .attr("height", this.y2.bandwidth())
         .attr("width", w)
         .attr("fill", d.color)
-        .attr("stroke","black");
+        .attr("stroke","black")
+        .attr("stroke-width","1");
     
       el
         .append("text")
@@ -147,7 +148,7 @@ export default class Eventse extends Vue {
       start = start*1000/419
       end = end*1500/629
       this.viewData = this.filteredData.filter(function(d:any){ 
-        const bl = (d.start >= start && d.start <= end)||(d.end >= start && d.end <= end)||(d.end >= end && d.start <= start)
+        const bl = (d.start >= start && d.start <= end)||(d.end >= start && d.end <= end)||(d.end >= end && d.start <= start)&&d.preview!="nan"
         return  bl
       })
       this.newx = d3.scaleLinear()
@@ -244,7 +245,8 @@ export default class Eventse extends Vue {
         .attr("height", this.y.bandwidth())
         .attr("width", w)
         .attr("fill", d.color)
-        .attr("stroke","black");
+        .attr("stroke","black")
+        .attr("stroke-width","2.4");
     
       el
         .append("text")
@@ -349,12 +351,10 @@ mounted()
     this.brush = d3
     .brushX()
     .extent([[this.margin.left, 0.5], [this.width - this.margin.right, this.focusHeight + 0.5]]) 
-    .on("brush", this.brushed);
+    .on("brush", this.brushed,);
 
    
-     this.gb = this.focus.append("g")
-      .call(this.brush)
-      .call(this.brush.move);
+     
     //add zooming
     /*
     this.svg.call(d3.zoom()
@@ -466,8 +466,9 @@ mounted()
       this.div.style("opacity", 0)
     });
 
-
-
+    this.gb = this.focus.append("g")
+    .call(this.brush)
+    .call(this.brush.move,[400,600]);
 }
 
 
