@@ -48,8 +48,8 @@ export default class Eventse extends Vue {
   {preview : "K",id: 'Aragorn II Elessar', start: 0, end: 120, 'age': "FO", startLabel: "", endLabel: "",color:"#FBC779"},
   {preview : "K",id: 'Eldarion', start: 120, end: 220, 'age': "FO", startLabel: "", endLabel: "",color:"#FBC779"}]
   
-    margin = ({top: 20, right: 20, bottom: 200, left: 5});
-    margin2 = {top: 860, right: 20, bottom: 40, left: 5}
+    margin = ({top: 20, right: 40, bottom: 200, left: 5});
+    margin2 = {top: 860, right: 40, bottom: 40, left: 5}
     width = 1200 - this.margin.left - this.margin.right;
     height = 1000 - this.margin.top - this.margin.bottom;
     focusHeight = 1000 - this.margin2.top - this.margin2.bottom;
@@ -252,11 +252,11 @@ export default class Eventse extends Vue {
         .append("text")
         .text(d.id)
         .attr("x",sx+w/2)
-        .attr("y", 2.5)
+        .attr("y", 80.5)
         .attr("fill", "black")
-        .style("text-anchor", "start")
+        .style("text-anchor", "middle")
         .style("dominant-baseline", "hanging")
-        .style("font", "9px sans-serif");
+        .style("font", "15px sans-serif");
     };
 viewData = this.data;
 tooltip:any;
@@ -468,7 +468,7 @@ mounted()
 
     this.gb = this.focus.append("g")
     .call(this.brush)
-    .call(this.brush.move,[400,600]);
+    .call(this.brush.move,[400,500]);
 }
 
 
