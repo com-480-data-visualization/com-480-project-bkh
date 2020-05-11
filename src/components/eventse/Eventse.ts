@@ -501,8 +501,9 @@ export default class Eventse extends Vue {
     //this.g1.attr("transform", d3.event.transform);
   }
   updateView(start: any, end: any) {
-    start = (start * 600) / 300;
-    end = (end * 800) / 400;
+    
+    start = (start * 600) / 260.5;
+    end = (end * 800) / 347;
     this.viewData = this.filteredData.filter(function(d: any) {
       const bl =
         (d.start >= start && d.start <= end) ||
@@ -883,6 +884,6 @@ export default class Eventse extends Vue {
     this.gb = this.focus
       .append("g")
       .call(this.brush)
-      .call(this.brush.move, [300.5, 400.5]);
+      .call(this.brush.move, [260.5, 347]);
   }
 }
