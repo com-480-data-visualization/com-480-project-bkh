@@ -131,8 +131,8 @@ export default class Timeline extends Vue {
     {"Event":"Two covered carts leave Bag End for Frodo's new house in Crickhollow. They convey the furniture and goods that Frodo has not sold by way of the Brandywine Bridge.","Age":"T.A.","Year":"3018","Date":"20 September 3018","Name":"Frodo","DateD":new Date("June 10 1999")}]
     
     margin = { top: 20, right: 20, bottom: 60, left: 60 };
-    width = 1600 - this.margin.left - this.margin.right;
-    height = 800 - this.margin.top - this.margin.bottom;
+    width = 1200 - this.margin.left - this.margin.right;
+    height = 600 - this.margin.top - this.margin.bottom;
     x: any;
     y: any;
     filteredData: any;
@@ -172,7 +172,7 @@ export default class Timeline extends Vue {
         .data(data)
         .enter().append("circle")
         .attr("class", "bubble")
-        .attr("r", 20)
+        .attr("r", 14)
         .attr("cx", (d:any)=> { return this.x(d.DateD); })
         .attr("cy", (d:any)=> { return this.y(d.Name); })
         .attr("opacity", 0.5)

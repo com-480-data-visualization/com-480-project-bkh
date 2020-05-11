@@ -410,8 +410,8 @@ export default class Eventse extends Vue {
 
   margin = { top: 20, right: 40, bottom: 200, left: 5 };
   margin2 = { top: 860, right: 40, bottom: 40, left: 5 };
-  width = 1600 - this.margin.left - this.margin.right;
-  height = 1000 - this.margin.top - this.margin.bottom;
+  width = 1400 - this.margin.left - this.margin.right;
+  height = 800 - this.margin.top - this.margin.bottom;
   focusHeight = 1000 - this.margin2.top - this.margin2.bottom;
   x: any;
   y: any;
@@ -883,6 +883,6 @@ export default class Eventse extends Vue {
     this.gb = this.focus
       .append("g")
       .call(this.brush)
-      .call(this.brush.move, [300, 400]);
+      .call(this.brush.move, [300.5, 400.5]);
   }
 }
