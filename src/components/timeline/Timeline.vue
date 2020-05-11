@@ -11,8 +11,9 @@ svg {
 </style>
 <template>
   <div id="Timeline">
-    <p>Timeline for the Movie Characters
-    </p>
+    <p>
+      <b>Timeline for the Main Characters (Scroll to Zoom in/out)</b>
+      </p>
   </div>
 </template>
 
