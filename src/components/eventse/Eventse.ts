@@ -616,6 +616,7 @@ export default class Eventse extends Vue {
       .attr("rx", 5)								// how much to round corners - to be transitioned below
 		  .attr("ry", 5)	
       .attr("fill", d.color)
+      .style("opacity", 0.6)
       .attr("stroke", "black")
       .attr("stroke-width", "5.4");
 
