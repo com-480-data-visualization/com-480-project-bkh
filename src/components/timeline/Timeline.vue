@@ -10,9 +10,10 @@ svg {
 }
 </style>
 <template>
-  <div id="Events">
-    <p>Timeline for the kings of Gondor</p>
+  <div id="Timeline">
+    <p>Timeline for the Movie Characters
+    </p>
   </div>
 </template>
 
-<script lang="ts" src="./Eventse.ts"></script>
+<script lang="ts" src="./Timeline.ts"></script>

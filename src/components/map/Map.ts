@@ -50,19 +50,16 @@ export default class LotrMap extends Vue {
       // for (const trip of this.hobbitTripsSelected) {
       //   $("." + trip).show();
       // }
-      this.changeTripsDisplay(this.hobbitTrips, this.hobbitTripsSelected)
+      this.changeTripsDisplay(this.hobbitTrips, this.hobbitTripsSelected);
 
-      this.changeTripsDisplay(this.LotrTrips, this.LotrTripsSelected)
+      this.changeTripsDisplay(this.LotrTrips, this.LotrTripsSelected);
     });
   }
 
   changeTripsDisplay(trips: Array<any>, selectedTrips: Array<any>) {
-
     for (const trip of trips) {
       if (selectedTrips.indexOf(trip.value) != -1) {
-
         $("." + trip.value).show();
-
 
         // const visibleLen = $("." + trip.value + ":visible").length;
         // const overallLen = $("." + trip.value).length;
