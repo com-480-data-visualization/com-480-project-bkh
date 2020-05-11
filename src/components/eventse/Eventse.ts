@@ -410,7 +410,7 @@ export default class Eventse extends Vue {
 
   margin = { top: 20, right: 40, bottom: 200, left: 5 };
   margin2 = { top: 860, right: 40, bottom: 40, left: 5 };
-  width = 1200 - this.margin.left - this.margin.right;
+  width = 1600 - this.margin.left - this.margin.right;
   height = 1000 - this.margin.top - this.margin.bottom;
   focusHeight = 1000 - this.margin2.top - this.margin2.bottom;
   x: any;
@@ -501,8 +501,8 @@ export default class Eventse extends Vue {
     //this.g1.attr("transform", d3.event.transform);
   }
   updateView(start: any, end: any) {
-    start = (start * 800) / 294;
-    end = (end * 1000) / 369;
+    start = (start * 600) / 300;
+    end = (end * 800) / 400;
     this.viewData = this.filteredData.filter(function(d: any) {
       const bl =
         (d.start >= start && d.start <= end) ||
@@ -569,6 +569,7 @@ export default class Eventse extends Vue {
           .style("font", "14px sans-serif");;
       })
       .on("mouseover", (d: any, i: any, n: any) => {
+        console.log(d.color)
         d3.select(n[i])
           .select("rect")
           .attr("fill", this.LightenDarkenColor(d.color, -20));
@@ -690,12 +691,29 @@ export default class Eventse extends Vue {
 
   mounted() {
     this.createXY();
+   
+    const colour:any= d3.scaleOrdinal()
+    .domain(d3.map(this.data, function(d:any){return d.id;})
+    .keys())
+    .range(d3.schemeCategory10);
+    
+    this.data.forEach( data => data.color =  colour(data.id))
+
+
+
+
+
     this.data = this.data.map(function(d:any){
       if (d.end - d.start < 20){
         d.text = d.id.substring(0,1)+"..."
       }
       else
         d.text = d.id
+
+      if (d.color == "#1f77b4")
+        d.color = "#47a8dc"
+      if (d.color == "#17becf")
+        d.color = "#3ed0da"
       
       return d})
 
@@ -864,6 +882,6 @@ export default class Eventse extends Vue {
     this.gb = this.focus
       .append("g")
       .call(this.brush)
-      .call(this.brush.move, [294, 369]);
+      .call(this.brush.move, [300, 400]);
   }
 }
