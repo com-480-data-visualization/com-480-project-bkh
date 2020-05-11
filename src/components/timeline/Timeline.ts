@@ -150,6 +150,8 @@ export default class Timeline extends Vue {
   y_axis: any;
   x_axis: any;
   xaxises: any;
+  xAxisTop: any;
+  xaxisesTop: any;
     
 
     getTooltipContent(d: any) {
@@ -202,6 +204,8 @@ export default class Timeline extends Vue {
         this.xaxises.transition()
         .duration(10)
         .call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
+
+        
         
         
 
@@ -211,6 +215,9 @@ export default class Timeline extends Vue {
         this.svg.selectAll("#axis--x").transition()
         .duration(10)
         .call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
+     
+     // .attr("transform", "rotate(-65)");
+
         
         const newxScale = d3.event.transform.rescaleX(this.x);
         
@@ -238,6 +245,7 @@ export default class Timeline extends Vue {
     .range([this.margin.top+40, this.height -this.margin.bottom])
     
     this.xAxis = d3.axisBottom(this.x).tickPadding(2);
+    this.xAxisTop = d3.axisTop(this.x).tickPadding(2);
     this.yAxis = d3.axisLeft(this.y);
 
 
@@ -246,7 +254,6 @@ export default class Timeline extends Vue {
     .attr("width", this.width + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom);
 
-  
     this.svg
     .call(d3.zoom()
     .scaleExtent([0, 500])
@@ -255,6 +262,7 @@ export default class Timeline extends Vue {
     
     this.g =this.svg.append("g")
     .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
+    
     
     
 
@@ -288,6 +296,13 @@ export default class Timeline extends Vue {
       .attr("dy", ".15em")
       .attr("transform", "rotate(-65)");
 
+      this.xaxisesTop = this.g.append("g")
+      .attr("class", "x axis")
+      .attr('id', "axis--x")
+      .call(this.xAxisTop)
+
+
+
     
         this.g.append("text")
          .style("text-anchor", "end")
@@ -296,10 +311,16 @@ export default class Timeline extends Vue {
          .text("Date");
 
     // y axis
-    this.g.append("g")
+    const yAX = this.g.append("g")
       .attr("class", "y axis")
       .attr('id', "axis--y")
-      .call(this.yAxis);
+      .call(this.yAxis)
+
+      yAX.selectAll("text")	
+      .attr("dx", "-.8em")
+      .attr("dy", "-5.1em");
+
+   
     
         this.g.append("text")
             .attr("transform", "rotate(-90)")
