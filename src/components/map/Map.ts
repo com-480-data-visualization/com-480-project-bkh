@@ -26,19 +26,35 @@ export default class LotrMap extends Vue {
   places: Array<any> = [];
 
   hobbitTrips: Array<any> = [
-    { text: "Bilbo", value: "wp-bilbo" },
-    { text: "Thorin", value: "wp-thorin" },
-    { text: "Other Dwarfs", value: "wp-dwarfs" },
-    { text: "Gandalf", value: "wp-gandalf-hobbit" }
+    { text: "Bilbo", value: "wp-bilbo", color: " rgba(208,	24,	49, 0.7)" },
+    { text: "Thorin", value: "wp-thorin", color: "rgba(185,	2,	138, 0.7)" },
+    { text: "Other Dwarfs", value: "wp-dwarfs", color: "rgba(150,	54,	1, 0.5)" },
+    {
+      text: "Gandalf",
+      value: "wp-gandalf-hobbit",
+      color: "rgba(68,	74,	230, 0.5)"
+    }
   ];
   LotrTrips: Array<any> = [
-    { text: "Frodo with Sam", value: "wp-frodo" },
-    { text: "Aragon", value: "wp-aragorn" },
-    { text: "Gandalf", value: "wp-gandalf-lotr" },
-    { text: "Legolas with Gimli", value: "wp-legogimli" },
-    { text: "Merry", value: "wp-merry" },
-    { text: "Pippin", value: "wp-pippin" },
-    { text: "Boromir", value: "wp-boromir" }
+    {
+      text: "Frodo with Sam",
+      value: "wp-frodo",
+      color: " rgba(208,	24,	49, 0.7)"
+    },
+    { text: "Aragon", value: "wp-aragorn", color: "rgba(185,	2,	138, 0.7)" },
+    {
+      text: "Gandalf",
+      value: "wp-gandalf-lotr",
+      color: "rgba(68,	74,	230, 0.5)"
+    },
+    {
+      text: "Legolas with Gimli",
+      value: "wp-legogimli",
+      color: "rgba(	73,	51,	63, 0.5)"
+    },
+    { text: "Merry", value: "wp-merry", color: "rgba(	238,	93,	21, 0.5)" },
+    { text: "Pippin", value: "wp-pippin", color: "rgba(	254,	75,	135, 0.5)" },
+    { text: "Boromir", value: "wp-boromir", color: "rgba(150,	54,	1, 0.5)" }
   ];
 
   hobbitTripsSelected: Array<string> = [];
@@ -50,19 +66,17 @@ export default class LotrMap extends Vue {
       // for (const trip of this.hobbitTripsSelected) {
       //   $("." + trip).show();
       // }
-      this.changeTripsDisplay(this.hobbitTrips, this.hobbitTripsSelected)
+      this.changeTripsDisplay(this.hobbitTrips, this.hobbitTripsSelected);
 
-      this.changeTripsDisplay(this.LotrTrips, this.LotrTripsSelected)
+      this.changeTripsDisplay(this.LotrTrips, this.LotrTripsSelected);
     });
   }
 
   changeTripsDisplay(trips: Array<any>, selectedTrips: Array<any>) {
-
     for (const trip of trips) {
       if (selectedTrips.indexOf(trip.value) != -1) {
-
+        $("." + trip.value).css({ stroke: trip.color });
         $("." + trip.value).show();
-
 
         // const visibleLen = $("." + trip.value + ":visible").length;
         // const overallLen = $("." + trip.value).length;
@@ -136,11 +150,20 @@ export default class LotrMap extends Vue {
   }
 
   drawTrips(features: GeoPermissibleObjects[]) {
+    const featureSplitted: GeoPermissibleObjects[] = [];
+    for (const feature of features) {
+      const events = (feature as any).properties.eventname.split(" ");
+      for (const event of events) {
+        const newObject = JSON.parse(JSON.stringify(feature));
+        newObject.properties.eventname = event;
+        featureSplitted.push(newObject);
+      }
+    }
     const container = this.svg.append("g");
     const i = 0;
     container
       .selectAll("path")
-      .data(features)
+      .data(featureSplitted)
       .enter()
       .append("path")
       .attr("d", x => this.path(x as GeoPermissibleObjects))
