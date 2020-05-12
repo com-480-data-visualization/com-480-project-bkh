@@ -16,6 +16,7 @@
     "bootstrap-vue": "^2.12.0",
     "core-js": "^3.6.4",
     "d3": "^5.16.0",
+    "d3-tip": "^0.9.1",
     "jquery": "^3.5.0",
     "typeface-uncial-antiqua": "0.0.71",
     "vue": "^2.6.11",
