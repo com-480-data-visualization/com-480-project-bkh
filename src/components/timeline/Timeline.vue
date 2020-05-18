@@ -13,7 +13,7 @@ svg {
   <div id="Timeline">
     <p>
       <b>Timeline for the Main Characters (Scroll to Zoom in/out)</b>
-      </p>
+    </p>
   </div>
 </template>
 

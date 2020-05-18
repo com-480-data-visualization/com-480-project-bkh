@@ -13,7 +13,8 @@
         <b-nav-item
           v-for="(headerItem, index) in headerItems"
           :key="index"
-          :href="headerItem.ref"
+          href="#"
+          @click="itemClicked(headerItem)"
           >{{ headerItem.name }}</b-nav-item
         >
       </b-navbar-nav>

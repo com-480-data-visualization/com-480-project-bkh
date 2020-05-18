@@ -1,3 +1,21 @@
+<style scoped lang="scss">
+.global-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.text-container {
+  margin-top: 100px;
+  margin-bottom: 25px;
+}
+.text-container h2 {
+  font-family: Uncial Antiqua;
+}
+.text-container h5 {
+  font-weight: normal;
+  font-size: 20px;
+}
+</style>
+
 <template>
   <div id="app">
     <Header></Header>
@@ -8,11 +26,33 @@
         alt="Responsive image"
       ></b-img>
     </div>
-    <!-- <p>app to view them all</p> -->
-    <Script></Script>
-    <Map></Map>
-    <Timeline></Timeline>
-    <Eventse></Eventse>
+    <div class="global-container">
+      <Script></Script>
+
+      <div class="text-container" id="MapAnchor">
+        <h2>One map to view them all</h2>
+        <h5>
+          How does map of the Middle-earth look like? It appears that J. R. R.
+          Tolkien made a detailed maps of the Arda, world of Middle-earth, in
+          his book `Silmarillion`, many people call it as a Bible of the
+          Middle-earth. Also we found out that author described 3 different
+          ages. We tried to visualize last one as all events from `Hobbit` and
+          `Lord of the Rings` took place during this period.
+        </h5>
+        <br />
+        <h5>
+          In the following visualization you can explore many questions. Where
+          is Lonely Mountain with the treasure of Smaug? How far away from home
+          did Frodo and Sam went? Why Minas Tirith strategic position was so importand both for Mordor and Allies?
+          Just use scroll wheel of your mouse to zoom,
+          use search bar to find specific place of interest or display path of
+          every hero using checkboxes.
+        </h5>
+      </div>
+      <Map></Map>
+      <Timeline></Timeline>
+      <Eventse></Eventse>
+    </div>
     <Footer></Footer>
   </div>
 </template>
@@ -34,7 +74,7 @@ import * as d3 from "d3";
     Map,
     Script,
     Timeline,
-     Eventse,
+    Eventse,
     Footer
   }
 })

@@ -11,7 +11,9 @@ svg {
 </style>
 <template>
   <div id="Events">
-    <p>Timeline for the kings of Gondor (Click on rectangles  to see Full name)</p>
+    <p>
+      Timeline for the kings of Gondor (Click on rectangles to see Full name)
+    </p>
     <p>SA:Second Age, TA:Third Age, FO: Fourth Age</p>
   </div>
 </template>

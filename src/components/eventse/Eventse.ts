@@ -4,7 +4,6 @@ import * as d3 from "d3";
 //let parent = this
 @Component
 export default class Eventse extends Vue {
-
   data = [
     {
       preview: "nan",
@@ -501,7 +500,6 @@ export default class Eventse extends Vue {
     //this.g1.attr("transform", d3.event.transform);
   }
   updateView(start: any, end: any) {
-    
     start = (start * 600) / 260.5;
     end = (end * 800) / 347;
     this.viewData = this.filteredData.filter(function(d: any) {
@@ -553,7 +551,6 @@ export default class Eventse extends Vue {
       .each(this.getRectView)
       .attr("pointer-events", "all")
       .on("click", (d: any) => {
-  
         this.div
           .transition()
           .duration(200)
@@ -567,10 +564,10 @@ export default class Eventse extends Vue {
           .style("box-shadow", "0 0 100px rgba(100,0,0,.25)")
           .style("padding", "10px")
           .style("line-height", "2.3")
-          .style("font", "14px sans-serif");;
+          .style("font", "14px sans-serif");
       })
       .on("mouseover", (d: any, i: any, n: any) => {
-        console.log(d.color)
+        console.log(d.color);
         d3.select(n[i])
           .select("rect")
           .attr("fill", this.LightenDarkenColor(d.color, -20));
@@ -612,10 +609,10 @@ export default class Eventse extends Vue {
 
     el.append("rect")
       .attr("x", sx)
-      .attr("height", this.y.bandwidth()-40)
+      .attr("height", this.y.bandwidth() - 40)
       .attr("width", w)
-      .attr("rx", 5)								// how much to round corners - to be transitioned below
-		  .attr("ry", 5)	
+      .attr("rx", 5) // how much to round corners - to be transitioned below
+      .attr("ry", 5)
       .attr("fill", d.color)
       .style("opacity", 0.6)
       .attr("stroke", "black")
@@ -693,31 +690,30 @@ export default class Eventse extends Vue {
 
   mounted() {
     this.createXY();
-   
-    const colour:any= d3.scaleOrdinal()
-    .domain(d3.map(this.data, function(d:any){return d.id;})
-    .keys())
-    .range(d3.schemeCategory10);
-    
-    this.data.forEach( data => data.color =  colour(data.id))
 
+    const colour: any = d3
+      .scaleOrdinal()
+      .domain(
+        d3
+          .map(this.data, function(d: any) {
+            return d.id;
+          })
+          .keys()
+      )
+      .range(d3.schemeCategory10);
 
+    this.data.forEach(data => (data.color = colour(data.id)));
 
+    this.data = this.data.map(function(d: any) {
+      if (d.end - d.start < 20) {
+        d.text = d.id.substring(0, 1) + "...";
+      } else d.text = d.id;
 
+      if (d.color == "#1f77b4") d.color = "#47a8dc";
+      if (d.color == "#17becf") d.color = "#3ed0da";
 
-    this.data = this.data.map(function(d:any){
-      if (d.end - d.start < 20){
-        d.text = d.id.substring(0,1)+"..."
-      }
-      else
-        d.text = d.id
-
-      if (d.color == "#1f77b4")
-        d.color = "#47a8dc"
-      if (d.color == "#17becf")
-        d.color = "#3ed0da"
-      
-      return d})
+      return d;
+    });
 
     const regions = d3
       .nest()
@@ -823,14 +819,13 @@ export default class Eventse extends Vue {
     this.contex = this.svg
       .append("g")
       .attr("class", "context")
-      .attr("transform", "translate(" + 60 + "," + this.margin.top  + ")");
+      .attr("transform", "translate(" + 60 + "," + this.margin.top + ")");
 
     this.contex
       .append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + this.height + ")")
       .call(this.axisBottom);
-      
 
     this.contex
       .append("g")

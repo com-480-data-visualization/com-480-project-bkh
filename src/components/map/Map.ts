@@ -28,11 +28,11 @@ export default class LotrMap extends Vue {
   hobbitTrips: Array<any> = [
     { text: "Bilbo", value: "wp-bilbo", color: " rgba(208,	24,	49, 0.7)" },
     { text: "Thorin", value: "wp-thorin", color: "rgba(185,	2,	138, 0.7)" },
-    { text: "Other Dwarfs", value: "wp-dwarfs", color: "rgba(150,	54,	1, 0.5)" },
+    { text: "Other Dwarfs", value: "wp-dwarfs", color: "rgba(150,	54,	1, 0.7)" },
     {
       text: "Gandalf",
       value: "wp-gandalf-hobbit",
-      color: "rgba(68,	74,	230, 0.5)"
+      color: "rgba(68,	74,	230, 0.7)"
     }
   ];
   LotrTrips: Array<any> = [
@@ -45,16 +45,16 @@ export default class LotrMap extends Vue {
     {
       text: "Gandalf",
       value: "wp-gandalf-lotr",
-      color: "rgba(68,	74,	230, 0.5)"
+      color: "rgba(68,	74,	230, 0.7)"
     },
     {
       text: "Legolas with Gimli",
       value: "wp-legogimli",
-      color: "rgba(	73,	51,	63, 0.5)"
+      color: "rgba(	73,	51,	63, 0.7)"
     },
-    { text: "Merry", value: "wp-merry", color: "rgba(	238,	93,	21, 0.5)" },
-    { text: "Pippin", value: "wp-pippin", color: "rgba(	254,	75,	135, 0.5)" },
-    { text: "Boromir", value: "wp-boromir", color: "rgba(150,	54,	1, 0.5)" }
+    { text: "Merry", value: "wp-merry", color: "rgba(	238,	93,	21, 0.7)" },
+    { text: "Pippin", value: "wp-pippin", color: "rgba(	254,	75,	135, 0.7)" },
+    { text: "Boromir", value: "wp-boromir", color: "rgba(150,	54,	1, 0.7)" }
   ];
 
   hobbitTripsSelected: Array<string> = [];
@@ -62,10 +62,6 @@ export default class LotrMap extends Vue {
 
   selectTrip() {
     Vue.nextTick(() => {
-      //$(".trip").hide();
-      // for (const trip of this.hobbitTripsSelected) {
-      //   $("." + trip).show();
-      // }
       this.changeTripsDisplay(this.hobbitTrips, this.hobbitTripsSelected);
 
       this.changeTripsDisplay(this.LotrTrips, this.LotrTripsSelected);
@@ -77,13 +73,6 @@ export default class LotrMap extends Vue {
       if (selectedTrips.indexOf(trip.value) != -1) {
         $("." + trip.value).css({ stroke: trip.color });
         $("." + trip.value).show();
-
-        // const visibleLen = $("." + trip.value + ":visible").length;
-        // const overallLen = $("." + trip.value).length;
-        // if (visibleLen != overallLen) {
-        //   $("." + trip.value).show();
-        //   console.log("aaa");
-        // }
       } else {
         let selector = "." + trip.value;
         for (const selected of selectedTrips)
@@ -93,13 +82,9 @@ export default class LotrMap extends Vue {
     }
   }
   selectPlace(place: any) {
-    console.log(place);
-
     const centroid = this.path.centroid(place as GeoPermissibleObjects);
     let x = centroid[0];
     let y = centroid[1];
-
-    //const proj = this.myProjection([x,y])
 
     let k = 0;
     if (place.properties.zoom == 1) {
@@ -117,14 +102,9 @@ export default class LotrMap extends Vue {
     const height = $("#mapsvg").height();
     const width = $("#mapsvg").width();
 
-    console.log(width);
-    console.log(height);
-
     if (height && width) {
       x = x - width / 7;
       y = y - height / 5;
-      console.log(x);
-      console.log(y);
       const transform = d3.zoomIdentity
         .translate(width / 2, height / 2)
         .scale(k)
@@ -167,11 +147,7 @@ export default class LotrMap extends Vue {
       .enter()
       .append("path")
       .attr("d", x => this.path(x as GeoPermissibleObjects))
-      //.attr("id", x => { i++; return i;})
       .attr("class", (x: any) => "trip " + x.properties.eventname);
-    //.attr("filter", "url(#mid-sepia)");
-    // .attr("stroke-miterlimit",10)
-    // .attr("stroke-width",1);
 
     $(".trip").hide();
   }
@@ -196,16 +172,12 @@ export default class LotrMap extends Vue {
       .call(this.zoom)
       .call(this.zoom.transform, transform);
 
-    // this.svg = this.svg
-    //   .append("g")
-    //   .attr("transform", transform);
-
     d3.json(process.env.VUE_APP_PUBLIC_PATH + "/lotr_bg.geo.json").then(bg => {
       this.myProjection = d3
         .geoEquirectangular()
         .translate([0, 0])
         .scale(8400000);
-      //this.myProjection.fitSize([7850, 11200], bg);
+
       this.path = d3.geoPath().projection(this.myProjection);
 
       const promises = [
@@ -223,8 +195,6 @@ export default class LotrMap extends Vue {
       ];
       Promise.all(promises).then(x => {
         this.drawLayer(x[0].features, "land");
-        // this.drawLayer(x[4].features, "mountain");
-        // this.drawLayer(x[2].features, "forest");
 
         const biomePromises = [
           this.fillBiome(x[4].features, 80, 80, 20, 20, "relief-mount-6"),
@@ -239,11 +209,8 @@ export default class LotrMap extends Vue {
           this.drawPeaks(x[9].features);
           this.drawCastles(x[10].features);
 
-          //this.drawLayer(x[1].features, "trip");
-
           this.drawTrips(x[1].features);
 
-          //console.log(x[5])
           this.places = x[5].features;
 
           this.places.map((z: any) => {
@@ -268,7 +235,6 @@ export default class LotrMap extends Vue {
           }
 
           this.places = result;
-          console.log(this.places);
 
           const container = d3.select("defs").append("g");
           container
@@ -280,8 +246,6 @@ export default class LotrMap extends Vue {
             .attr("d", x => this.path(x as GeoPermissibleObjects))
             .attr("id", (x: any) => x.properties.id);
 
-          //.attr("fill", "red")
-
           const container1 = this.svg.append("text");
           container1
             .selectAll("textPath")
@@ -289,7 +253,6 @@ export default class LotrMap extends Vue {
             .data(x[5].features)
             .enter()
             .append("textPath")
-            //.attr("class", "text")
             .attr("class", function(d: any) {
               return (
                 "text zoom" +
@@ -311,12 +274,6 @@ export default class LotrMap extends Vue {
           $(".zoom4").hide();
           $(".zoom5").hide();
         });
-
-        //       bar.append("text")
-        // .attr("x", function(d) { return x(d) - 3; })
-        // .attr("y", barHeight / 2)
-        // .attr("dy", ".35em")
-        // .text(function(d) { return d; });
       });
     });
   }
@@ -337,12 +294,7 @@ export default class LotrMap extends Vue {
           picOverlapWidth,
           picOverlapHeight
         ).then(points => {
-          //console.log("points");
-
-          //console.log(points);
           for (const point of points) {
-            //const projected = this.myProjection(point);
-            //if (projected)
             this.svg
               .append("use")
               .attr("x", point[0] - picWidth / 2)
@@ -350,8 +302,6 @@ export default class LotrMap extends Vue {
               .attr("width", picWidth)
               .attr("height", picHeight)
               .attr("xlink:href", "#" + picName);
-            //.attr("filter", "url(#pencilTexture4");
-            //        <use xlink:href="#relief-mount-6" width="40" height="40"></use>
           }
         })
       );
@@ -382,8 +332,6 @@ export default class LotrMap extends Vue {
           ]);
       }
 
-      // let limit = 30;
-      // if (area >= 0.000002) limit = 300;
       const limit = area / 1.30406207e-9;
       const dist = generateDistribution(ar);
       for (let i = 0; i < limit; i += 1) {
@@ -391,11 +339,6 @@ export default class LotrMap extends Vue {
         const point = this.myProjection(calcRandomPoint(tr));
         if (point) points.push(point);
       }
-
-      // const res = this.myProjection.invert([picWidth, picHeight])
-      // picWidth = 0.00023
-      // picHeight = 0.00015
-      // console.log(res)
 
       for (let i = 0; i < points.length; i++) {
         points = points.filter(
@@ -439,8 +382,6 @@ export default class LotrMap extends Vue {
   }
 
   mounted() {
-    const height = 1500;
-    const width = 1500;
     this.drawMap();
 
     this.mapResize();
@@ -761,12 +702,4 @@ export default class LotrMap extends Vue {
         }
       });
   }
-
-  //draw cities, fortress, mountains
-
-  // zoomed() {
-  //   g
-  //     .selectAll('path') // To prevent stroke width from scaling
-  //     .attr('transform', d3.event.transform);
-  // }
 }

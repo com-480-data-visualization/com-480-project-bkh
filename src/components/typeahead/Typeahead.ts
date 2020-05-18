@@ -23,7 +23,6 @@ export default class Typeahead extends Vue {
   searchText = "";
 
   get searchData() {
-    console.log(this.modelVal.map(x => x[this.searchFieldName]));
     return this.modelVal.map(x => x[this.searchFieldName]);
   }
 
