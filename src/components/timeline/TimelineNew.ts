@@ -51,11 +51,11 @@ export default class TimelineNew extends Vue {
        
         event.era = y.era;
         if (y.era === 0) {
-          event.tag = "(2)SA";
+          event.tag = "2nd Age";
         } else if (y.era === 1) {
-          event.tag = "(3)TA";
+          event.tag = "3rd Age";
         } else if (y.era === 2) {
-          event.tag = "(4)FO";
+          event.tag = "4th Age";
         }
         timelineData.date.push(event);
         return event;
