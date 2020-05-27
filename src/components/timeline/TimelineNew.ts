@@ -48,12 +48,14 @@ export default class TimelineNew extends Vue {
         event.startDate = y.start.toString();
         event.endDate = y.end.toString();
         event.text = y.biog;
+       
+        event.era = y.era;
         if (y.era === 0) {
-          event.tag = "SA";
+          event.tag = "(2)SA";
         } else if (y.era === 1) {
-          event.tag = "TA";
+          event.tag = "(3)TA";
         } else if (y.era === 2) {
-          event.tag = "FO";
+          event.tag = "(4)FO";
         }
         timelineData.date.push(event);
         return event;
@@ -64,6 +66,7 @@ export default class TimelineNew extends Vue {
         width: "100%",
         height: "500",
         source: { timeline: timelineData },
+        
         embed_id:	'TimelineNew'			// eslint-disable-line
       });
     });

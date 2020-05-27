@@ -8,7 +8,6 @@
 </style>
 <template>
   <div id="TimelineNew" style="width: 1000px; height 500px">
-    sadasdsad
   </div>
 </template>
 

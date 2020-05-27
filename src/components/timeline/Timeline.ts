@@ -1301,7 +1301,7 @@ export default class Timeline extends Vue {
 
         )
     console.log(this.filteredData.length)
-    if (this.filteredData.length<1)
+    if (this.filteredData.length < 1)
     {
       this.filteredData = this.data
     }
@@ -1320,7 +1320,15 @@ export default class Timeline extends Vue {
   }
 
   plotData(data: any,x:any,y:any,nofch:any) {
-    const shift = 100/nofch
+    let shift = 0;
+    if (nofch==0)
+    {
+         shift = 0;
+    }
+    else{
+     shift = 100/nofch-20;
+    }
+    console.log(shift)
     this.scatter.selectAll(".bubble").remove();
     this.scatter
       .selectAll(".bubble")
@@ -1333,7 +1341,6 @@ export default class Timeline extends Vue {
         return x(d.DateD);
       })
       .attr("cy", (d: any) => {
-         console.log(y(d.Name))
         return y(d.Name)+shift;
       })
       .attr("opacity", 0.5)

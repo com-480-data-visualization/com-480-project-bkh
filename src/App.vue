@@ -63,7 +63,8 @@
           and interaction between eachother. When did Frodo and Gollum meet for
           the first time? When did Gandalf become white ? and many other
           questions... Simply scroll to zoom and drag the graph to move in
-          timeline, and move your mouse over the dots to see event descriptions.
+          timeline, and move your mouse over the dots to see event descriptions. Also you can select your
+          favorite character from the right checklist.
         </h5>
       </div>
       <Timeline></Timeline>
@@ -84,13 +85,10 @@
         <h5>
           In the following visualization you can explore the rulers of this
           might Kingdom. Which king has the longest ruling time? When was Gondor
-          re-founded after it's destruction. Simply you can select the area from
-          the above graph to focus, and as you move the rectangle focus area
-          will also shift. If want to see full names of the kings just click on
-          the corresponding recctangle in the larger graph.
+          re-united after it's civil war. You can drag the timeline to explore, click on the names to see the details,
+          and zoom in/out by using the left zoom icons.
         </h5>
       </div>
-      <Eventse></Eventse>
       <TimelineNew></TimelineNew>
     </div>
     <Footer></Footer>
