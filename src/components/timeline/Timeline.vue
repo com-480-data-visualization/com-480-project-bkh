@@ -10,11 +10,35 @@ svg {
 }
 </style>
 <template>
-  <div id="Timeline">
-    <p>
-      <b>(Scroll to Zoom in/out, Drag to move)</b>
-    </p>
-  </div>
+  <b-container fluid>
+      <b-row>
+        <b-col cols="100">
+            <div id="Timeline">
+              
+            </div>
+
+        </b-col>
+        <b-col cols="2">
+        
+        <h3>Character</h3>
+        <div>
+          <b-form-checkbox-group
+            id="heroes"
+            v-model="heroesSelected"
+            :options="heroes"
+            stacked
+            @change="selectTrip"
+          ></b-form-checkbox-group>
+        </div>
+        </b-col>
+      </b-row>
+  </b-container>
+    
 </template>
+
+
+
+
+
 
 <script lang="ts" src="./Timeline.ts"></script>
