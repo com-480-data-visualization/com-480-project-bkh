@@ -500,15 +500,15 @@ export default class Eventse extends Vue {
     //this.g1.attr("transform", d3.event.transform);
   }
   updateView(start: any, end: any) {
-    start = (start * 600) / 260.5 -6.5;
-    end = (end * 800) / 347 -8.7;
-  
+    start = (start * 600) / 260.5 - 6.5;
+    end = (end * 800) / 347 - 8.7;
+
     this.viewData = this.filteredData.filter(function(d: any) {
       const bl =
         (d.start >= start && d.start <= end) ||
         (d.end >= start && d.end <= end) ||
         (d.end >= end && d.start <= start);
-      return bl && (d.preview != "nan");
+      return bl && d.preview != "nan";
     });
     this.newx = d3
       .scaleLinear()
