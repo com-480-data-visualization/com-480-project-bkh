@@ -58,7 +58,7 @@ export default class TimelineNew extends Vue {
           event.tag = "(4)FO";
         }
         timelineData.date.push(event);
-        return evenpnt;
+        return event;
       });
       console.log(timelineData);
       (window as any).createStoryJS({
