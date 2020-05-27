@@ -12,7 +12,7 @@ svg {
 <template>
   <div id="Timeline">
     <p>
-      <b>Timeline for the Main Characters (Scroll to Zoom in/out)</b>
+      <b>(Scroll to Zoom in/out, Drag to move)</b>
     </p>
   </div>
 </template>
