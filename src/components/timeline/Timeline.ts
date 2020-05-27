@@ -1,5 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import * as d3 from "d3";
+import { schemeOranges } from 'd3';
 //import * as _d3Tip from "d3-tip";
 //let parent = this
 @Component
@@ -1077,11 +1078,12 @@ export default class Timeline extends Vue {
   ];
 
   margin = { top: 20, right: 20, bottom: 60, left: 60 };
-  width = 1200 - this.margin.left - this.margin.right;
+  width = 1000 - this.margin.left - this.margin.right;
   height = 600 - this.margin.top - this.margin.bottom;
+  
   x: any;
   y: any;
-  filteredData: any;
+  filteredData = this.data;
   svg: any;
   tooltip: any;
   xAxis: any;
@@ -1098,7 +1100,215 @@ export default class Timeline extends Vue {
   xaxises: any;
   xAxisTop: any;
   xaxisesTop: any;
+  heroesSelected: Array<string> = [];
 
+  heroes: Array<any> = [
+    {text: "Aragorn",value: "wp-aragorn",color: "rgba(68,	74,	230, 0.7)"},
+    { text: "Gandalf", value: "wp-gandalf", color: "rgba(185,	2,	138, 0.7)" },
+    { text: "Frodo", value: "wp-frodo", color: "rgba(150,	54,	1, 0.7)" },
+    { text: "Gollum", value: "wp-gollum", color: " rgba(208,	24,	49, 0.7)" },
+    { text: "Bilbo", value: "wp-bilbo", color: " rgba(208,	24,	49, 0.7)" }
+    
+  ];
+
+  selectTrip() {
+    Vue.nextTick(() => {
+      this.changeTripsDisplay(this.heroes, this.heroesSelected);
+    });
+  }
+  newx:any;
+  newy:any;
+  newXAxis:any;
+  newXAxisTop:any;
+  newYAxis:any;
+  reDraw(numch:any)
+  {
+    console.log(this.filteredData)
+    this.newx = d3
+    .scaleTime()
+    .domain([
+      d3.min(this.filteredData, (d: any) => d.DateD),
+      d3.max(this.filteredData, (d: any) => d.DateD)
+    ])
+    .range([this.margin.right, this.width - this.margin.left])
+    .nice();
+  
+  this.newy = d3
+    .scaleBand()
+    .domain(this.filteredData.map(d => d.Name))
+    .range([this.margin.top, this.height - this.margin.bottom]);
+
+  this.newXAxis = d3.axisBottom(this.newx).tickPadding(2);
+  this.newXAxisTop = d3.axisTop(this.newx).tickPadding(2);
+  this.newYAxis = d3.axisLeft(this.newy);
+
+  this.svg.selectAll("g.x.axis").call(this.newXAxis);
+  this.svg.selectAll("g.x.axis").call(this.newXAxisTop);
+  this.svg.selectAll("g.y.axis").call(this.newYAxis);
+  this.colour = d3
+  .scaleOrdinal()
+  .domain(
+    d3
+      .map(this.data, function(d: any) {
+        return d.Name;
+      })
+      .keys()
+  )
+  .range(d3.schemeCategory10);
+  
+  this.plotData(this.filteredData,this.newx,this.newy,numch);
+  }
+
+  draw()
+  {
+    this.tooltip = d3
+    .select("#Timeline")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  this.data.forEach((d:any) => (d.DateD = new Date(d.Date)));
+  this.x = d3
+    .scaleTime()
+    .domain([
+      d3.min(this.data, (d: any) => d.DateD),
+      d3.max(this.data, (d: any) => d.DateD)
+    ])
+    .range([this.margin.right, this.width - this.margin.left])
+    .nice();
+
+  this.y = d3
+    .scaleBand()
+    .domain(this.data.map(d => d.Name))
+    .range([this.margin.top + 40, this.height - this.margin.bottom]);
+
+  this.xAxis = d3.axisBottom(this.x).tickPadding(2);
+  this.xAxisTop = d3.axisTop(this.x).tickPadding(2);
+  this.yAxis = d3.axisLeft(this.y);
+
+  this.svg = d3
+    .select("#Timeline")
+    .append("svg")
+    .attr("width", this.width + this.margin.left + this.margin.right)
+    .attr("height", this.height + this.margin.top + this.margin.bottom);
+
+  this.svg.call(
+    d3
+      .zoom()
+      .scaleExtent([0, 500])
+      .translateExtent([
+        [0, 0],
+        [this.width, this.height]
+      ])
+      .on("zoom", this.zoomx)
+  );
+
+  this.g = this.svg
+    .append("g")
+    .attr(
+      "transform",
+      "translate(" + this.margin.left + "," + this.margin.top + ")"
+    );
+
+  this.clip = this.g
+    .append("defs")
+    .append("svg:clipPath")
+    .attr("id", "clip")
+    .append("svg:rect")
+    .attr("width", this.width)
+    .attr("height", this.height)
+    .attr("x", 0)
+    .attr("y", 0);
+
+  this.scatter = this.g
+    .append("g")
+    .attr("id", "scatterplot")
+    .attr("clip-path", "url(#clip)");
+
+  this.colour = d3
+    .scaleOrdinal()
+    .domain(
+      d3
+        .map(this.data, function(d: any) {
+          return d.Name;
+        })
+        .keys()
+    )
+    .range(d3.schemeCategory10);
+
+  // x axis
+  this.xaxises = this.g
+    .append("g")
+    .attr("class", "x axis")
+    .attr("id", "axis--x")
+    .attr("transform", "translate(0," + this.height + ")")
+    .call(this.xAxis)
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", "rotate(-65)");
+
+  this.xaxisesTop = this.g
+    .append("g")
+    .attr("class", "x axis")
+    .attr("id", "axis--x")
+    .call(this.xAxisTop);
+
+  this.g
+    .append("text")
+    .style("text-anchor", "end")
+    .attr("x", this.width)
+    .attr("y", this.height - 8)
+    .text("Date");
+
+  // y axis
+  const yAX = this.g
+    .append("g")
+    .attr("class", "y axis")
+    .attr("id", "axis--y")
+    .call(this.yAxis);
+
+  yAX
+    .selectAll("text")
+    .attr("dx", "-.8em")
+    .attr("dy", "-5.1em");
+
+  this.g
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", "1em")
+    .style("text-anchor", "end")
+    .text("Character");
+  this.plotData(this.data,this.x,this.y,5);
+  }
+  
+  changeTripsDisplay(heroes: Array<any>, selectedTrips: Array<any>) {
+    const sheroes:Array<any> = [];
+    for (const hero of heroes) {
+      if (selectedTrips.indexOf(hero.value) != -1) {
+        console.log(hero.text)
+        sheroes.push(hero.text)
+      }
+    }
+    console.log("Erdem")
+    console.log(sheroes)
+    this.filteredData = this.data.filter((d:any)=>
+        {
+          return sheroes.includes(d.Name)
+        }
+
+        )
+    console.log(this.filteredData.length)
+    if (this.filteredData.length < 1)
+    {
+      this.filteredData = this.data
+    }
+    
+    this.reDraw(sheroes.length)
+
+  }
   getTooltipContent(d: any) {
     return `<b>${d.Name}</b>
         <br/>
@@ -1109,20 +1319,29 @@ export default class Timeline extends Vue {
         `;
   }
 
-  plotData(data: any) {
-    this.scatter.selectAll(".dot").remove();
+  plotData(data: any,x:any,y:any,nofch:any) {
+    let shift = 0;
+    if (nofch==0)
+    {
+         shift = 0;
+    }
+    else{
+     shift = 100/nofch-20;
+    }
+    console.log(shift)
+    this.scatter.selectAll(".bubble").remove();
     this.scatter
-      .selectAll(".dot")
+      .selectAll(".bubble")
       .data(data)
       .enter()
       .append("circle")
       .attr("class", "bubble")
       .attr("r", 14)
       .attr("cx", (d: any) => {
-        return this.x(d.DateD);
+        return x(d.DateD);
       })
       .attr("cy", (d: any) => {
-        return this.y(d.Name);
+        return y(d.Name)+shift;
       })
       .attr("opacity", 0.5)
       .style("fill", (d: any) => {
@@ -1173,126 +1392,9 @@ export default class Timeline extends Vue {
     });
   }
   mounted() {
-    this.tooltip = d3
-      .select("#Timeline")
-      .append("div")
-      .attr("class", "tooltip")
-      .style("opacity", 0);
+    this.draw()
+    
 
-    this.data.forEach(data => (data.DateD = new Date(data.Date)));
-    this.x = d3
-      .scaleTime()
-      .domain([
-        d3.min(this.data, (d: any) => d.DateD),
-        d3.max(this.data, (d: any) => d.DateD)
-      ])
-      .range([this.margin.right, this.width - this.margin.left])
-      .nice();
-
-    this.y = d3
-      .scaleBand()
-      .domain(this.data.map(d => d.Name))
-      .range([this.margin.top + 40, this.height - this.margin.bottom]);
-
-    this.xAxis = d3.axisBottom(this.x).tickPadding(2);
-    this.xAxisTop = d3.axisTop(this.x).tickPadding(2);
-    this.yAxis = d3.axisLeft(this.y);
-
-    this.svg = d3
-      .select("#Timeline")
-      .append("svg")
-      .attr("width", this.width + this.margin.left + this.margin.right)
-      .attr("height", this.height + this.margin.top + this.margin.bottom);
-
-    this.svg.call(
-      d3
-        .zoom()
-        .scaleExtent([0, 500])
-        .translateExtent([
-          [0, 0],
-          [this.width, this.height]
-        ])
-        .on("zoom", this.zoomx)
-    );
-
-    this.g = this.svg
-      .append("g")
-      .attr(
-        "transform",
-        "translate(" + this.margin.left + "," + this.margin.top + ")"
-      );
-
-    this.clip = this.g
-      .append("defs")
-      .append("svg:clipPath")
-      .attr("id", "clip")
-      .append("svg:rect")
-      .attr("width", this.width)
-      .attr("height", this.height)
-      .attr("x", 0)
-      .attr("y", 0);
-
-    this.scatter = this.g
-      .append("g")
-      .attr("id", "scatterplot")
-      .attr("clip-path", "url(#clip)");
-
-    this.colour = d3
-      .scaleOrdinal()
-      .domain(
-        d3
-          .map(this.data, function(d: any) {
-            return d.Name;
-          })
-          .keys()
-      )
-      .range(d3.schemeCategory10);
-
-    // x axis
-    this.xaxises = this.g
-      .append("g")
-      .attr("class", "x axis")
-      .attr("id", "axis--x")
-      .attr("transform", "translate(0," + this.height + ")")
-      .call(this.xAxis)
-      .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", ".15em")
-      .attr("transform", "rotate(-65)");
-
-    this.xaxisesTop = this.g
-      .append("g")
-      .attr("class", "x axis")
-      .attr("id", "axis--x")
-      .call(this.xAxisTop);
-
-    this.g
-      .append("text")
-      .style("text-anchor", "end")
-      .attr("x", this.width)
-      .attr("y", this.height - 8)
-      .text("Date");
-
-    // y axis
-    const yAX = this.g
-      .append("g")
-      .attr("class", "y axis")
-      .attr("id", "axis--y")
-      .call(this.yAxis);
-
-    yAX
-      .selectAll("text")
-      .attr("dx", "-.8em")
-      .attr("dy", "-5.1em");
-
-    this.g
-      .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "1em")
-      .style("text-anchor", "end")
-      .text("Character");
-    this.plotData(this.data);
+ 
   }
 }
