@@ -43,15 +43,16 @@
         <h5>
           In the following visualization you can explore many questions. Where
           is Lonely Mountain with the treasure of Smaug? How far away from home
-          did Frodo and Sam went? Why Minas Tirith strategic position was so importand both for Mordor and Allies?
-          Just use scroll wheel of your mouse to zoom,
-          use search bar to find specific place of interest or display path of
-          every hero using checkboxes.
+          did Frodo and Sam went? Why Minas Tirith strategic position was so
+          importand both for Mordor and Allies? Just use scroll wheel of your
+          mouse to zoom, use search bar to find specific place of interest or
+          display path of every hero using checkboxes.
         </h5>
       </div>
       <Map></Map>
       <Timeline></Timeline>
       <Eventse></Eventse>
+      <TimelineNew></TimelineNew>
     </div>
     <Footer></Footer>
   </div>
@@ -65,6 +66,7 @@ import Script from "./components/script/Script.vue";
 import Footer from "./components/footer/Footer.vue";
 import Eventse from "./components/eventse/Eventse.vue";
 import Timeline from "./components/timeline/Timeline.vue";
+import TimelineNew from "./components/timeline/TimelineNew.vue";
 
 import * as d3 from "d3";
 
@@ -75,7 +77,8 @@ import * as d3 from "d3";
     Script,
     Timeline,
     Eventse,
-    Footer
+    Footer,
+    TimelineNew
   }
 })
 export default class App extends Vue {}
