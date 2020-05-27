@@ -177,8 +177,7 @@ export default class Events extends Vue {
       .domain(["one"])
       .range([0, this.height - this.margin.bottom - this.margin.top])
       .padding(0.2);
-    console.log("Erdem");
-    console.log(this.y);
+
     const regions = d3
       .nest()
       .key((d: any) => d.age)
