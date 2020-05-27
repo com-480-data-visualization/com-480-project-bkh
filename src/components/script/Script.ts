@@ -26,6 +26,8 @@ export default class Script extends Vue {
   movieIndexByName!: any;
   characterIndexByName!: any;
   races!: any;
+  glinks!: any
+  gnodes!: any
   pack!: any;
   chord!: any;
   arc!: any;
@@ -33,12 +35,13 @@ export default class Script extends Vue {
   rOuterScale!: any;
   rInnerScale!: any;
   opacityScale!: any;
-  width = 1366;
-  height = 700;
-  outerRadius: number = Math.min(this.width, this.height) * 0.5 - 10;
-  innerRadius: number = this.outerRadius - 30;
-  insideRadius: number = this.width * 0.5;
-  paddingCircle = 30;
+  width_left = 700;
+  width_right = 700;
+  height = 500;
+  outerRadius: number = Math.min(this.width_left, this.height) * 0.5 - 10;
+  innerRadius: number = this.outerRadius - 20;
+  insideRadius: number = this.width_left * 0.5;
+  paddingCircle = 20;
   paddingArc = 0.01;
   movieIntro = [
     "The Fellowship of the Ring",
@@ -48,25 +51,39 @@ export default class Script extends Vue {
   div!: any;
   div1!: any;
   div2!: any;
+  div3!: any;
+  div4!: any;
   mounted() {
+    
     this.div = d3
       .select("#script")
       .append("div")
-      .attr("id", "svg1");
-    // small div for hover effects on the chords
+      .attr("id", "svg1")
+    this.div2 = d3
+      .select("#svg1")
+      .append("div")
+      .attr("id", "svg2")
+      .attr("class", "tooltip2")
+      .style("left", "670px");
+    this.div3 = d3
+      .select("#svg1")
+      .append("g") // group to move svg sideways
+      .attr("transform", "translate(" + 100 + ")")
+      .append("div")
+      .attr("id", "svg3")
+      .attr("class", "tooltip3")
+      .style("left", "1070px");
+    this.div4 = d3
+      .select("#svg1")
+      .append("div")
+      .attr("id", "svg4")
+      .attr("class", "tooltip4")
+      .style("left", "670px");
     this.div1 = d3
       .select("#script")
       .append("div")
       .attr("class", "tooltip1")
       .style("opacity", 0);
-    // big div for hover effects
-    this.div2 = d3
-      .select("#svg1")
-      .append("div")
-      .attr("class", "tooltip2")
-      .style("opacity", 0)
-      .style("left", "820px")
-      .style("top", "30px");
     const promise1 = d3.csv(
         process.env.VUE_APP_PUBLIC_PATH + "/Movies.csv",
         this.parseMovieRaw
@@ -74,13 +91,11 @@ export default class Script extends Vue {
       promise2 = d3.csv(
         process.env.VUE_APP_PUBLIC_PATH + "/merged_information.csv"
       );
-
     Promise.all([promise1, promise2]).then((x: any) =>
       this.callback(x[0], x[1])
     );
   }
 
-  /* function for the main visualization */
   parseMovieRaw(d: any, i: any) {
     return {
       Name: d.Name,
@@ -93,27 +108,25 @@ export default class Script extends Vue {
     };
   }
 
-  /* call back function for the main visualization */
   callback(rawMovies: any, wordsByCharacter: any) {
     this.processData(rawMovies, wordsByCharacter);
+  
     const svg1 = d3
       .select("#svg1")
       .append("svg")
-      .attr("width", this.width)
-      .attr("height", this.height);
-    const group = svg1
+      .attr("width", this.width_left)
+      .attr("height", this.height)
       .append("g")
       .attr(
         "transform",
-        "translate(" + this.height / 2 + "," + this.height / 2 + ")"
-      );
-    this.prepareDrawing();
-    this.drawPaths(group);
-    this.drawcircles(group);
-    this.drawLegends(group);
+        "translate(" + this.height / 2 + "," + this.height / 2 + ")");
+      
+    this.prepareDrawing()
+    this.drawPaths(svg1);
+    this.drawcircles(svg1);
+    this.drawLegends(svg1);
   }
 
-  /* prepare data */
   processData(rawMovies: any, wordsByCharacter: any) {
     this.movies = rawMovies.map(function(d: any, i: any) {
       d.index = i;
@@ -200,6 +213,83 @@ export default class Script extends Vue {
       .outerRadius(this.outerRadius);
     this.ribbon = customeRibbon().radius(this.innerRadius);
   }
+  drawBubbles(svg: any, i: number) {
+    const currColor = d3
+      .scaleOrdinal()
+      .domain(this.races)
+      .range(this.colors);
+    
+    const simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d: any) { return d.id; }))
+    .force("charge", d3.forceManyBody().strength(-300).distanceMax(300).distanceMin(80))
+          .force("center", d3.forceCenter(this.width_left / 2, this.width_left / 2));
+
+    function dragstarted(d:any) {
+      if (!d3.event.active) simulation.alphaTarget(.03).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+    function dragged(d:any) {
+      d.fx = d3.event.x;
+      d.fy = d3.event.y;
+    }
+    function dragended(d:any) {
+      if (!d3.event.active) simulation.alphaTarget(.03);
+      d.fx = null;
+      d.fy = null;
+    }  
+    let filename = "f_r_character_graph.json";
+    if(i == 1) filename = "t_t_character_graph.json"
+    else if(i == 2) filename = "r_k_character_graph.json"
+    d3.json(process.env.VUE_APP_PUBLIC_PATH + filename).
+      then(function(graph) {
+        const link = svg.append("g")
+            .attr("class", "links")
+          .selectAll("line")
+          .data(graph.links)
+          .enter().append("line")
+            .attr("stroke", "grey")
+            .attr("stroke-width", function(d: any) { return d.value / 5; });
+      
+        const nodes = svg.append("g")
+            .attr("class", "nodes")
+          .selectAll("circle")
+          .data(graph.nodes)
+          .enter().append("g")
+        
+        nodes.append("circle")
+            .attr("r", 5)
+            .attr("fill", function(d: any) { return currColor(d.race); })
+            .call(d3.drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended));
+        
+        nodes.append("text")
+          .attr("dx", 8)
+          .attr("dy", ".35em")
+          .text(function(d: any) { return d.id });
+        function ticked() {
+          link
+              .attr("x1", function(d: any) { return d.source.x; })
+              .attr("y1", function(d: any) { return d.source.y; })
+              .attr("x2", function(d: any) { return d.target.x; })
+              .attr("y2", function(d: any) { return d.target.y; });
+      
+          nodes
+              .attr("transform", function(d: any) { return "translate("+[d.x,d.y]+")" });
+        }
+        simulation
+            .nodes(graph.nodes)
+            .on("tick", ticked);
+        simulation
+          .force("link")
+          .links(graph.links);
+      })
+      .catch(function(error) {
+        throw error;
+      });
+  }
   /* draw center inner and outer circles */
   drawcircles(svg: any) {
     const bubbles = svg
@@ -212,7 +302,7 @@ export default class Script extends Vue {
       // add hover effects for inner circles
       .on("mouseover", (d: any, i: any) => {
         this.circleMouseover(d, i);
-        this.displayFieldSet(i, "movie");
+        // this.displayFieldSet(i, "movie");
       })
       .on("mouseout", (d: any, i: any) => {
         this.circleMouseout(d, i);
@@ -325,8 +415,8 @@ export default class Script extends Vue {
   }
 
   drawLegends(svg: any) {
-    const xloc = 470;
-    let yloc = 80;
+    const xloc = 220;
+    let yloc = 120;
     const raceLegends = svg
       .append("g")
       .selectAll("rect")
@@ -336,28 +426,28 @@ export default class Script extends Vue {
     raceLegends
       .append("rect")
       .attr("x", function(d: any, i: any) {
-        return xloc;
+        return xloc + Math.floor(i / 5) * 130;
       })
       .attr("y", function(d: any, i: any) {
-        return yloc + i * 25;
+        return yloc + (i % 5) * 25;
       })
-      .attr("width", 10)
-      .attr("height", 10)
+      .attr("width", 8)
+      .attr("height", 8)
       .style("fill", (d: any, i: any) => {
         return this.color(this.races[i]);
       })
       .style("opacity", "0.9");
-    yloc = 90;
+    yloc = 130;
     raceLegends
       .append("text")
       .attr("x", function(d: any, i: any) {
-        return xloc + 30;
+        return xloc + Math.floor(i / 5) * 130 + 30;
       })
       .attr("y", function(d: any, i: any) {
-        return yloc + i * 25;
+        return yloc + (i % 5) * 25;
       })
       .attr("text-anchor", "left")
-      .attr("font-size", "12pt")
+      .attr("font-size", "10pt")
       .text(function(d: any) {
         return d;
       });
@@ -365,59 +455,73 @@ export default class Script extends Vue {
 
   /* display text on hover for circles and chords */
   displayFieldSet(i: any, type: string) {
-    // this.div2.style("opacity", 0.9);
-    // let legend;
-    // let fields: any = {};
-    // if (type == "character") {
-    //   legend = this.words[i].key;
-    //   fields["Race"] = this.words[i].race;
-    //   fields["Birth"] = this.words[i].birth;
-    //   fields["Death"] = this.words[i].death;
-    //   fields["Hair Color"] = this.words[i].hair;
-    //   fields["Height"] = this.words[i].height;
-    //   fields["Gender"] = this.words[i].gender;
-    //   fields["Total Words in the Series"] = this.words[i].sum;
-    //   fields["Words in " + this.movies[0].Name] = this.words[i].wordsList[0];
-    //   fields["Words in " + this.movies[1].Name] = this.words[i].wordsList[1];
-    //   fields["Words in " + this.movies[2].Name] = this.words[i].wordsList[2];
-    // } else if (type == "movie") {
-    //   legend = this.movies[i].Name;
-    //   fields = {
-    //     "Runtime In Minutes": this.movies[i].runtime,
-    //     "Budget In Millions": this.movies[i].budget,
-    //     "Box Office Revenue In Millions": this.movies[i].boxRevenue,
-    //     "Academy Award Nominations": this.movies[i].nominations,
-    //     "Academy Award Wins": this.movies[i].wins,
-    //     "Rotten Tomatoes Score": this.movies[i].score
-    //   };
-    // } else return;
-    // d3.select("fieldset").remove();
-    // const fieldset = this.div2.append("fieldset");
-    // fieldset.append("legend").html(legend);
-    // for (const key in fields) {
-    //   fieldset
-    //     .append("li")
-    //     .html("<strong>" + key + "</strong>: " + fields[key])
-    //     .style("color", () => {
-    //       if (key == "race") {
-    //         return this.color(fields[key]);
-    //       }
-    //       return "black";
-    //     });
-    // }
+    d3.select("#svg2").select("svg").remove()
+    d3.select("#svg3").select("svg").remove()
+    d3.select("#svg4").select("svg").remove();
+    this.div2.style("opacity", 0.9);
+    let legend;
+    let fields: any = {};
+    if (type == "character") {
+      legend = this.words[i].key;
+      fields["Race"] = this.words[i].race;
+      fields["Birth"] = this.words[i].birth;
+      fields["Death"] = this.words[i].death;
+      fields["Hair Color"] = this.words[i].hair;
+      fields["Height"] = this.words[i].height;
+      fields["Gender"] = this.words[i].gender;
+    } else if (type == "movie") {
+      legend = this.movies[i].Name;
+      fields = {
+        "Runtime In Minutes": this.movies[i].runtime,
+        "Budget In Millions": this.movies[i].budget,
+        "Box Office Revenue In Millions": this.movies[i].boxRevenue,
+        "Academy Award Nominations": this.movies[i].nominations,
+        "Academy Award Wins": this.movies[i].wins,
+        "Rotten Tomatoes Score": this.movies[i].score
+      };
+    } else return;
+    const characterSmall = legend.toLowerCase();
+    d3
+      .select("#svg3")
+      .append("svg")
+      .attr("width", this.width_right)
+      .attr("height", this.height)
+      .append("image")
+      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/characters/" + characterSmall + ".png")
+      .attr("width", 200)
+      .attr("height", 200);
+    d3.select("fieldset").remove();
+    const fieldset = this.div2.append("fieldset");
+    fieldset.append("legend").html(legend);
+
+
+    for (const key in fields) {
+      fieldset
+        .append("li")
+        .html("<strong>" + key + "</strong>: " + fields[key])
+        .style("color", () => {
+          if (key == "Race") {
+            return this.color(fields[key]);
+          }
+          return "black";
+        });
+    }
   }
 
   /* display the small text on hover for each chord group */
   displayTooltip(i: any, opacity: any) {
-    const text = this.words[i].key;
+    const text = this.words[i].key + 
+    "<br>" + this.movies[0].Name + ": " + this.words[i].wordsList[0] + " words" + 
+    "<br>" + this.movies[1].Name + ": " + this.words[i].wordsList[1] + " words" +
+    "<br>" + this.movies[2].Name + ": " + this.words[i].wordsList[2] + " words";
     this.div1
       .transition()
-      .duration(200)
+      .duration(500)
       .style("opacity", opacity);
     this.div1
       .html(text)
       .style("left", d3.event.pageX + "px")
-      .style("top", d3.event.pageY - 28 + "px");
+      .style("top", d3.event.pageY - 10 + "px");
   }
 
   /* change chord opacity on hover for each chord */
@@ -428,41 +532,6 @@ export default class Script extends Vue {
       })
       .transition()
       .style("opacity", 0.1);
-
-    // const charInd = Math.floor(i / 3);
-    // const movieInd = d.source.subindex;
-    // // var text = words[i].key;
-    // // console.log(movieIntro[d.source.subindex])
-    // this.div2.style("opacity", 0.9);
-    // const fields: any = {};
-    // fields["Movie"] = this.movies[movieInd].Name;
-    // fields["Character"] = this.words[charInd].key;
-    // fields["Race"] = this.words[charInd].race;
-    // fields["Birth"] = this.words[charInd].birth;
-    // fields["Death"] = this.words[charInd].death;
-    // fields["Hair Color"] = this.words[charInd].hair;
-    // fields["Height"] = this.words[charInd].height;
-    // fields["Gender"] = this.words[charInd].gender;
-    // fields["Words"] = this.words[charInd].wordsList[movieInd];
-    // d3.select("fieldset").remove();
-    // const fieldset = this.div2.append("fieldset");
-    // const legend: string =
-    //   this.words[charInd].key + " in " + this.movies[movieInd].Name;
-    // fieldset.append("legend").html(legend);
-    // let flag = 0;
-    // for (const key in fields) {
-    //   let type = "ul";
-    //   if (flag == 0) type = "li";
-    //   fieldset
-    //     .append(type)
-    //     .html("<strong>" + key + "</strong>: " + fields[key])
-    //     .style("color", function() {
-    //       return "black";
-    //     });
-    //   if (key == "Character") {
-    //     flag = 1;
-    //   }
-    // }
 
     d3.selectAll(".bubbles g")
       .filter(function(e, index) {
@@ -504,6 +573,18 @@ export default class Script extends Vue {
       })
       .transition()
       .style("opacity", 0.1);
+    d3.select("#svg2").select("svg").remove();
+    d3.select("#svg3").select("svg").remove();
+    d3.select("#svg4").select("svg").remove();
+    d3.select("fieldset").remove();
+    const svg2 = d3
+      .select("#svg4")
+      .append("svg")
+      .attr("width", this.width_right)
+      .attr("height", this.height)
+      .append("g") // group to move svg sideways
+      .attr("transform", "translate(" + (0 + "," + -100) + ")")
+    this.drawBubbles(svg2, i);
   }
 
   /* remove hover effects */
