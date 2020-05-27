@@ -1,11 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import * as d3 from "d3";
-import { Chronoline } from "chronoline";
-// import { createStoryJS } from "timelinejs";
-import $ from "jquery";
 
-//import * as _d3Tip from "d3-tip";
-//let parent = this
 @Component
 export default class TimelineNew extends Vue {
   startDate = 0;
@@ -50,20 +45,15 @@ export default class TimelineNew extends Vue {
         const event: any = {};
         event.type = "default";
         event.headline = y.name;
-        event.startDate = y.start.toString()
-        event.endDate = y.end.toString()
+        event.startDate = y.start.toString();
+        event.endDate = y.end.toString();
         event.text = y.biog;
-        if(y.era === 0){
+        if (y.era === 0) {
           event.tag = "SA";
-
-        }
-        else if(y.era === 1){
+        } else if (y.era === 1) {
           event.tag = "TA";
-
-        }
-        else if(y.era === 2){
+        } else if (y.era === 2) {
           event.tag = "FO";
-
         }
         timelineData.date.push(event);
         return event;
@@ -73,7 +63,7 @@ export default class TimelineNew extends Vue {
         type: "timeline",
         width: "100%",
         height: "500",
-        source: {timeline: timelineData},
+        source: { timeline: timelineData },
         embed_id:	'TimelineNew'			// eslint-disable-line
       });
     });

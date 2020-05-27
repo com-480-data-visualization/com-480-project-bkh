@@ -11,7 +11,6 @@ svg {
 </style>
 <template>
   <div id="Events">
-   
     <p>SA:Second Age, TA:Third Age, FO: Fourth Age</p>
   </div>
 </template>
