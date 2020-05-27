@@ -15,7 +15,7 @@ export default class TimelineNew extends Vue {
     const recaptchaScript = document.createElement("script");
     recaptchaScript.setAttribute(
       "src",
-      "http://cdn.knightlab.com/libs/timeline/latest/js/storyjs-embed.js"
+      "https://cdn.knightlab.com/libs/timeline/latest/js/storyjs-embed.js"
     );
     document.head.appendChild(recaptchaScript);
 
@@ -58,7 +58,7 @@ export default class TimelineNew extends Vue {
           event.tag = "(4)FO";
         }
         timelineData.date.push(event);
-        return event;
+        return evenpnt;
       });
       console.log(timelineData);
       (window as any).createStoryJS({
