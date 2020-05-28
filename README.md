@@ -83,6 +83,7 @@ For project:
 
 </details>
 
+- [Website](https://com-480-data-visualization.github.io/com-480-project-bkh/)
 - [Process book](https://github.com/com-480-data-visualization/com-480-project-bkh/blob/master/ProcessBook.pdf)
 - [Screencast](https://youtu.be/8C7F88gJzL4)
 
