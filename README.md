@@ -58,5 +58,28 @@ For this milestone we used Vue, typescript(mainly d3) and vue-bootstrap for our 
 
 ## Milestone 3 (Thursday 28th May, 5pm)
 
+Project commands:
+
+vue-cli need to be installed
+
+## Project setup
+
+npm install
+
+
+### Compiles and hot-reloads for development
+
+npm run serve
+
+
+### Compiles and minifies for production
+
+npm run build
+
+
+### Lints and fixes files
+
+npm run lint
+
 **80% of the final grade**
 
