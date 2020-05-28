@@ -7,8 +7,8 @@
 }
 </style>
 <template>
-  <div id="TimelineNew" style="width: 1000px; height 500px">
+  <div id="KingsNew" style="width: 1000px; height 500px">
   </div>
 </template>
 
-<script lang="ts" src="./TimelineNew.ts"></script>
+<script lang="ts" src="./KingsNew.ts"></script>

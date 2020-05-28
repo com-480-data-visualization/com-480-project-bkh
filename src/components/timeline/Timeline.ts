@@ -1078,8 +1078,9 @@ export default class Timeline extends Vue {
   ];
 
   margin = { top: 20, right: 20, bottom: 60, left: 60 };
-  width = 1000 - this.margin.left - this.margin.right;
-  height = 600 - this.margin.top - this.margin.bottom;
+  width:any = 1000 - this.margin.left - this.margin.right;
+  height:any = 600 - this.margin.top - this.margin.bottom;
+   
   
   x: any;
   y: any;
@@ -1178,6 +1179,7 @@ console.log(numch)
 
   draw()
   {
+   
     this.tooltip = d3
     .select("#Timeline")
     .append("div")

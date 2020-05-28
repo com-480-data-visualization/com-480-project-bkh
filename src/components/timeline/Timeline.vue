@@ -12,12 +12,12 @@ svg {
 <template>
   <b-container fluid>
       <b-row>
-        <b-col cols="100">
-            <div id="Timeline">
+        <b-col cols="10">             
+            <div id="Timeline" >
               
             </div>
-
         </b-col>
+
         <b-col cols="2">
         
         <h3>Character</h3>

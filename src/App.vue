@@ -113,7 +113,7 @@
           and zoom in/out by using the left zoom icons.
         </h5>
       </div>
-      <TimelineNew></TimelineNew>
+      <KingsNew></KingsNew>
     </div>
     <Footer></Footer>
   </div>
@@ -125,9 +125,8 @@ import Header from "./components/header/Header.vue";
 import Map from "./components/map/Map.vue";
 import Script from "./components/script/Script.vue";
 import Footer from "./components/footer/Footer.vue";
-import Eventse from "./components/eventse/Eventse.vue";
 import Timeline from "./components/timeline/Timeline.vue";
-import TimelineNew from "./components/timeline/TimelineNew.vue";
+import KingsNew from "./components/kingsNew/KingsNew.vue";
 
 import * as d3 from "d3";
 
@@ -137,9 +136,8 @@ import * as d3 from "d3";
     Map,
     Script,
     Timeline,
-    Eventse,
     Footer,
-    TimelineNew
+    KingsNew
   }
 })
 export default class App extends Vue {}

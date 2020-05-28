@@ -2,7 +2,7 @@ import { Component, Vue } from "vue-property-decorator";
 import * as d3 from "d3";
 
 @Component
-export default class TimelineNew extends Vue {
+export default class KingsNew extends Vue {
   startDate = 0;
   mounted() {
     // const recaptchaScript0 = document.createElement("script");
@@ -67,7 +67,7 @@ export default class TimelineNew extends Vue {
         height: "500",
         source: { timeline: timelineData },
         
-        embed_id:	'TimelineNew'			// eslint-disable-line
+        embed_id:	'KingsNew'			// eslint-disable-line
       });
     });
 
