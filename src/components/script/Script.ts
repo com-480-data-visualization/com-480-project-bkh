@@ -39,7 +39,7 @@ export default class Script extends Vue {
   width_right = 700;
   height = 500;
   outerRadius: number = Math.min(this.width_left, this.height) * 0.5 - 10;
-  innerRadius: number = this.outerRadius - 20;
+  innerRadius: number = this.outerRadius - 15;
   insideRadius: number = this.width_left * 0.5;
   paddingCircle = 20;
   paddingArc = 0.01;
@@ -64,7 +64,7 @@ export default class Script extends Vue {
       .append("div")
       .attr("id", "svg2")
       .attr("class", "tooltip2")
-      .style("left", "670px");
+      .style("left", "740px");
     this.div3 = d3
       .select("#svg1")
       .append("g") // group to move svg sideways
@@ -72,7 +72,7 @@ export default class Script extends Vue {
       .append("div")
       .attr("id", "svg3")
       .attr("class", "tooltip3")
-      .style("left", "1070px");
+      .style("left", "1050px");
     this.div4 = d3
       .select("#svg1")
       .append("div")
@@ -201,8 +201,19 @@ export default class Script extends Vue {
       });
     this.points = pack(root).leaves();
     this.points.map((d: any, i: any) => {
-      d.x = d.x - this.insideRadius / 2;
-      d.y = d.y - this.insideRadius / 2;
+      if(i == 0) {
+        d.x = d.x-200;
+        d.y = d.y-200;
+      }
+      else if(i == 1){
+        d.x = d.x-140;
+        d.y = d.y-200;
+      }
+      else {
+        d.x = d.x-170;
+        d.y = d.y-170;
+      }
+      
     });
     this.chord = customeChord()
       .padAngle(this.paddingArc)
@@ -219,7 +230,7 @@ export default class Script extends Vue {
       .domain(this.races)
       .range(this.colors);
     
-    const simulation = d3.forceSimulation()
+    const simulation:any = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d: any) { return d.id; }))
     .force("charge", d3.forceManyBody().strength(-300).distanceMax(300).distanceMin(80))
           .force("center", d3.forceCenter(this.width_left / 2, this.width_left / 2));
@@ -268,6 +279,7 @@ export default class Script extends Vue {
         nodes.append("text")
           .attr("dx", 8)
           .attr("dy", ".35em")
+          .attr("font-family", "Georgia")
           .text(function(d: any) { return d.id });
         function ticked() {
           link
@@ -282,8 +294,7 @@ export default class Script extends Vue {
         simulation
             .nodes(graph.nodes)
             .on("tick", ticked);
-        simulation
-          .force("link")
+        simulation.force("link")
           .links(graph.links);
       })
       .catch(function(error) {
@@ -311,7 +322,7 @@ export default class Script extends Vue {
     bubbles
       .append("circle")
       .attr("r", function(d: any) {
-        return 60;
+        return 63;
       })
       .attr("cx", function(d: any) {
         return d.x;
@@ -333,7 +344,7 @@ export default class Script extends Vue {
         d3.select(n[i])
           .transition()
           .style("fill", "#c5c5c5")
-          .attr("r", 60);
+          .attr("r", 62);
       });
     bubbles
       .append("text")
@@ -344,7 +355,8 @@ export default class Script extends Vue {
         return d.y;
       })
       .attr("text-anchor", "middle")
-      .attr("font-size", "9pt")
+      .attr("font-size", "8pt")
+      .attr("font-family", "Georgia")
       .text((d: any, i: any) => {
         return this.movieIntro[i];
       });
@@ -415,8 +427,8 @@ export default class Script extends Vue {
   }
 
   drawLegends(svg: any) {
-    const xloc = 220;
-    let yloc = 120;
+    const xloc = 240;
+    let yloc = -220;
     const raceLegends = svg
       .append("g")
       .selectAll("rect")
@@ -437,17 +449,18 @@ export default class Script extends Vue {
         return this.color(this.races[i]);
       })
       .style("opacity", "0.9");
-    yloc = 130;
+    yloc = -210;
     raceLegends
       .append("text")
       .attr("x", function(d: any, i: any) {
-        return xloc + Math.floor(i / 5) * 130 + 30;
+        return xloc + Math.floor(i / 5) * 130 + 20;
       })
       .attr("y", function(d: any, i: any) {
         return yloc + (i % 5) * 25;
       })
       .attr("text-anchor", "left")
-      .attr("font-size", "10pt")
+      .attr("font-size", "8pt")
+      .attr("font-family", "Georgia")
       .text(function(d: any) {
         return d;
       });
@@ -488,8 +501,8 @@ export default class Script extends Vue {
       .attr("height", this.height)
       .append("image")
       .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/characters/" + characterSmall + ".png")
-      .attr("width", 200)
-      .attr("height", 200);
+      .attr("width", 230)
+      .attr("height", 230);
     d3.select("fieldset").remove();
     const fieldset = this.div2.append("fieldset");
     fieldset.append("legend").html(legend);
@@ -514,14 +527,17 @@ export default class Script extends Vue {
     "<br>" + this.movies[0].Name + ": " + this.words[i].wordsList[0] + " words" + 
     "<br>" + this.movies[1].Name + ": " + this.words[i].wordsList[1] + " words" +
     "<br>" + this.movies[2].Name + ": " + this.words[i].wordsList[2] + " words";
-    this.div1
-      .transition()
-      .duration(500)
-      .style("opacity", opacity);
-    this.div1
-      .html(text)
-      .style("left", d3.event.pageX + "px")
-      .style("top", d3.event.pageY - 10 + "px");
+    // this.div1.transition().duration(500).remove();
+    
+      this.div1
+        .transition()
+        .duration(500)
+        .style("opacity", opacity);
+      this.div1
+        .html(text)
+        .style("left", d3.event.pageX + 15 + "px")
+        .style("top", d3.event.pageY - 10 + "px");
+    
   }
 
   /* change chord opacity on hover for each chord */

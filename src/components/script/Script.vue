@@ -12,7 +12,7 @@ div#main {
 }
 div.tooltip3 {
   position: absolute;
-  margin-top: 50px;
+  margin-top: 150px;
 }
 div.tooltip1 {
   position: absolute;
@@ -33,7 +33,7 @@ div.tooltip2 {
   height: 500px;
   padding: 2px;
   font-size: 12px;
-  margin-top: 50px;
+  margin-top: 150px;
   font-family: Arial;
   border: 0px;
   border-radius: 8px;
@@ -64,7 +64,8 @@ legend {
 }
 
 li {
-  margin: 8px;
+  margin: 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   list-style: none;
 }
 </style>
