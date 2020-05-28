@@ -219,7 +219,7 @@ export default class Script extends Vue {
       .domain(this.races)
       .range(this.colors);
     
-    const simulation = d3.forceSimulation()
+    const simulation:any = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d: any) { return d.id; }))
     .force("charge", d3.forceManyBody().strength(-300).distanceMax(300).distanceMin(80))
           .force("center", d3.forceCenter(this.width_left / 2, this.width_left / 2));
