@@ -20,7 +20,7 @@
 <template>
   <div id="app">
     <Header></Header>
-    <div>
+    <div style="margin-top: 20px">
       <b-img
         src="https://www.ecopetit.cat/wpic/mpic/49-491631_fellowship-of-the-ring-line.jpg"
         fluid-grow
