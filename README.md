@@ -58,32 +58,32 @@ For this milestone we used Vue, typescript(mainly d3) and vue-bootstrap for our 
 
 ## Milestone 3 (Thursday 28th May, 5pm)
 
-Project commands:
+<details><summary><b>Technical Setup</b></summary>
+For project:
 
-vue-cli need to be installed
+- *vue-cli* need to be installed  
 
-## Project setup
-
-npm install
-
-
-### Compiles and hot-reloads for development
-
-npm run serve
+#### Project setup
+```npm install```
 
 
-### Compiles and minifies for production
+#### Compiles and hot-reloads for development
+```npm run serve```
 
-npm run build
+
+#### Compiles and minifies for production
+```npm run build```
 
 
-### Lints and fixes files
+#### Lints and fixes files
+```npm run lint```
 
-npm run lint
+#### Deploy to github pages
+```npm run deploy```
 
-### Deploy to github pages
+</details>
 
-npm run deploy
+- [Process book](https://github.com/com-480-data-visualization/com-480-project-bkh/blob/master/ProcessBook.pdf)
+- [Screencast](https://youtu.be/8C7F88gJzL4)
 
 **80% of the final grade**
-
