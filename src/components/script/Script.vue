@@ -65,7 +65,7 @@ legend {
 
 li {
   margin: 10px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   list-style: none;
 }
 </style>

@@ -11,15 +11,13 @@ svg {
 </style>
 <template>
   <b-container fluid>
-      <b-row>
-        <b-col cols="100">
-            <div id="Timeline">
-              
-            </div>
-
-        </b-col>
-        <b-col cols="2">
-        
+    <b-row>
+      <b-col cols="10">
+        <div id="Timeline" style="width: 100%">
+          <svg id="Timeline-svg-container" width="1000" height="600"></svg>
+        </div>
+      </b-col>
+      <b-col cols="2">
         <h3>Character</h3>
         <div>
           <b-form-checkbox-group
@@ -30,15 +28,9 @@ svg {
             @change="selectTrip"
           ></b-form-checkbox-group>
         </div>
-        </b-col>
-      </b-row>
+      </b-col>
+    </b-row>
   </b-container>
-    
 </template>
-
-
-
-
-
 
 <script lang="ts" src="./Timeline.ts"></script>

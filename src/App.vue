@@ -2,6 +2,7 @@
 .global-container {
   padding-left: 40px;
   padding-right: 40px;
+  margin-bottom: 60px;
 }
 .text-container {
   margin-top: 100px;
@@ -30,26 +31,27 @@
       <div class="text-container" id="ScriptAnchor">
         <h2>Character infographic</h2>
         <h5>
-          The Lord of the Rings - the masterpiece by Tolkien. Besides the events and battles,
-           characters and their developments
-          throughout the story is very impressive. Peter Jackson illustrated this story in his triology, 
-          gave perfect descriptions of characters. We tried to visualize the main characters 
-          in each of three movies, and their features written and shown in the story and in the movies.
+          The Lord of the Rings - the masterpiece by Tolkien. Besides the events
+          and battles, characters and their developments throughout the story is
+          very impressive. Peter Jackson illustrated this story in his triology,
+          gave perfect descriptions of characters. We tried to visualize the
+          main characters in each of three movies, and their features written
+          and shown in the story and in the movies.
         </h5>
         <br />
         <h5>
-          In the visualization below you can see the main diagram in the left. 
+          In the visualization below you can see the main diagram in the left.
           You can get information about characters by hovering to the part of
-          the outer circle. It will create a new infographic in the right,
-          and give answers to questions such as 
-          "How many words do Frodo speak in The Fellowship of the Rings?", 
-          "What is the the birth date of Sam?". By hovering or clicking one
-          of the three circles inside, you can explore questions about the movies.
-          "What are the races of the main characters in the Two Towers?", 
-          "Whom did Aragorn speak with most in the Return of the King?", - analyze
-          the full interaction graph to get detailed information
-          about character relations. Remember bigger node for the character, greater role in the movie.
-          And thicker edge between nodes represents more interaction between characters.
+          the outer circle. It will create a new infographic in the right, and
+          give answers to questions such as "How many words do Frodo speak in
+          The Fellowship of the Rings?", "What is the the birth date of Sam?".
+          By hovering or clicking one of the three circles inside, you can
+          explore questions about the movies. "What are the races of the main
+          characters in the Two Towers?", "Whom did Aragorn speak with most in
+          the Return of the King?", - analyze the full interaction graph to get
+          detailed information about character relations. Remember bigger node
+          for the character, greater role in the movie. And thicker edge between
+          nodes represents more interaction between characters.
         </h5>
       </div>
       <Script></Script>
@@ -87,8 +89,8 @@
           and interaction between eachother. When did Frodo and Gollum meet for
           the first time? When did Gandalf become white ? and many other
           questions... Simply scroll to zoom and drag the graph to move in
-          timeline, and move your mouse over the dots to see event descriptions. Also you can select your
-          favorite character from the right checklist.
+          timeline, and move your mouse over the dots to see event descriptions.
+          Also you can select your favorite character from the right checklist.
         </h5>
       </div>
       <Timeline></Timeline>
@@ -109,8 +111,9 @@
         <h5>
           In the following visualization you can explore the rulers of this
           might Kingdom. Which king has the longest ruling time? When was Gondor
-          re-united after it's civil war. You can drag the timeline to explore, click on the names to see the details,
-          and zoom in/out by using the left zoom icons.
+          re-united after it's civil war. You can drag the timeline to explore,
+          click on the names to see the details, and zoom in/out by using the
+          left zoom icons.
         </h5>
       </div>
       <TimelineNew></TimelineNew>

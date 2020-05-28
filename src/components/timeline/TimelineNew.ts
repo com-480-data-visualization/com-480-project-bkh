@@ -1,5 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import * as d3 from "d3";
+import { timeout } from "d3";
 
 @Component
 export default class TimelineNew extends Vue {
@@ -48,7 +49,7 @@ export default class TimelineNew extends Vue {
         event.startDate = y.start.toString();
         event.endDate = y.end.toString();
         event.text = y.biog;
-       
+
         event.era = y.era;
         if (y.era === 0) {
           event.tag = "2nd Age";
@@ -61,14 +62,17 @@ export default class TimelineNew extends Vue {
         return event;
       });
       console.log(timelineData);
-      (window as any).createStoryJS({
-        type: "timeline",
-        width: "100%",
-        height: "500",
-        source: { timeline: timelineData },
-        
-        embed_id:	'TimelineNew'			// eslint-disable-line
-      });
+
+      timeout(() => {
+        (window as any).createStoryJS({
+          type: "timeline",
+          width: "100%",
+          height: "500",
+          source: { timeline: timelineData },
+
+          embed_id: "TimelineNew" // eslint-disable-line
+        });
+      }, 5000);
     });
 
     // d3.json(process.env.VUE_APP_PUBLIC_PATH + "/kingsNew.json").then(x => {

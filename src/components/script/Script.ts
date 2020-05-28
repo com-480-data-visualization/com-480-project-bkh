@@ -26,8 +26,8 @@ export default class Script extends Vue {
   movieIndexByName!: any;
   characterIndexByName!: any;
   races!: any;
-  glinks!: any
-  gnodes!: any
+  glinks!: any;
+  gnodes!: any;
   pack!: any;
   chord!: any;
   arc!: any;
@@ -54,11 +54,10 @@ export default class Script extends Vue {
   div3!: any;
   div4!: any;
   mounted() {
-    
     this.div = d3
       .select("#script")
       .append("div")
-      .attr("id", "svg1")
+      .attr("id", "svg1");
     this.div2 = d3
       .select("#svg1")
       .append("div")
@@ -110,7 +109,7 @@ export default class Script extends Vue {
 
   callback(rawMovies: any, wordsByCharacter: any) {
     this.processData(rawMovies, wordsByCharacter);
-  
+
     const svg1 = d3
       .select("#svg1")
       .append("svg")
@@ -119,9 +118,10 @@ export default class Script extends Vue {
       .append("g")
       .attr(
         "transform",
-        "translate(" + this.height / 2 + "," + this.height / 2 + ")");
-      
-    this.prepareDrawing()
+        "translate(" + this.height / 2 + "," + this.height / 2 + ")"
+      );
+
+    this.prepareDrawing();
     this.drawPaths(svg1);
     this.drawcircles(svg1);
     this.drawLegends(svg1);
@@ -201,19 +201,16 @@ export default class Script extends Vue {
       });
     this.points = pack(root).leaves();
     this.points.map((d: any, i: any) => {
-      if(i == 0) {
-        d.x = d.x-200;
-        d.y = d.y-200;
+      if (i == 0) {
+        d.x = d.x - 200;
+        d.y = d.y - 200;
+      } else if (i == 1) {
+        d.x = d.x - 140;
+        d.y = d.y - 200;
+      } else {
+        d.x = d.x - 170;
+        d.y = d.y - 170;
       }
-      else if(i == 1){
-        d.x = d.x-140;
-        d.y = d.y-200;
-      }
-      else {
-        d.x = d.x-170;
-        d.y = d.y-170;
-      }
-      
     });
     this.chord = customeChord()
       .padAngle(this.paddingArc)
@@ -229,82 +226,119 @@ export default class Script extends Vue {
       .scaleOrdinal()
       .domain(this.races)
       .range(this.colors);
-    
-    const simulation:any = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d: any) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-300).distanceMax(300).distanceMin(80))
-          .force("center", d3.forceCenter(this.width_left / 2, this.width_left / 2));
 
-    function dragstarted(d:any) {
-      if (!d3.event.active) simulation.alphaTarget(.03).restart();
+    const simulation: any = d3
+      .forceSimulation()
+      .force(
+        "link",
+        d3.forceLink().id(function(d: any) {
+          return d.id;
+        })
+      )
+      .force(
+        "charge",
+        d3
+          .forceManyBody()
+          .strength(-300)
+          .distanceMax(300)
+          .distanceMin(80)
+      )
+      .force(
+        "center",
+        d3.forceCenter(this.width_left / 2, this.width_left / 2)
+      );
+
+    function dragstarted(d: any) {
+      if (!d3.event.active) simulation.alphaTarget(0.03).restart();
       d.fx = d.x;
       d.fy = d.y;
     }
-    function dragged(d:any) {
+    function dragged(d: any) {
       d.fx = d3.event.x;
       d.fy = d3.event.y;
     }
-    function dragended(d:any) {
-      if (!d3.event.active) simulation.alphaTarget(.03);
+    function dragended(d: any) {
+      if (!d3.event.active) simulation.alphaTarget(0.03);
       d.fx = null;
       d.fy = null;
-    }  
+    }
     let filename = "f_r_character_graph.json";
-    if(i == 1) filename = "t_t_character_graph.json"
-    else if(i == 2) filename = "r_k_character_graph.json"
+    if (i == 1) filename = "t_t_character_graph.json";
+    else if (i == 2) filename = "r_k_character_graph.json";
     const words = this.words;
-    d3.json(process.env.VUE_APP_PUBLIC_PATH + filename).
-      then(function(graph) {
-        const link = svg.append("g")
-            .attr("class", "links")
+    d3.json(process.env.VUE_APP_PUBLIC_PATH + filename)
+      .then(function(graph) {
+        const link = svg
+          .append("g")
+          .attr("class", "links")
           .selectAll("line")
           .data(graph.links)
-          .enter().append("line")
-            .attr("stroke", "grey")
-            .attr("stroke-width", function(d: any) { return d.value / 5; });
-        const nodes = svg.append("g")
-            .attr("class", "nodes")
+          .enter()
+          .append("line")
+          .attr("stroke", "grey")
+          .attr("stroke-width", function(d: any) {
+            return d.value / 5;
+          });
+        const nodes = svg
+          .append("g")
+          .attr("class", "nodes")
           .selectAll("circle")
           .data(graph.nodes)
-          .enter().append("g")
+          .enter()
+          .append("g");
         console.log(words);
-        nodes.append("circle")
+        nodes
+          .append("circle")
           .attr("r", (d: any) => {
             let wordCount = 0;
-            for(let j = 0; j < words.length; j += 1) {
-                  if(words[j].key == d.id) {
-                     wordCount = words[j].wordsList[i];
-                     break;
-                  }
+            for (let j = 0; j < words.length; j += 1) {
+              if (words[j].key == d.id) {
+                wordCount = words[j].wordsList[i];
+                break;
+              }
             }
             console.log(wordCount);
             return Math.round(wordCount / 100) + 5;
           })
-          .attr("fill", function(d: any) { return currColor(d.race); })
-          .call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
-        nodes.append("text")
+          .attr("fill", function(d: any) {
+            return currColor(d.race);
+          })
+          .call(
+            d3
+              .drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended)
+          );
+        nodes
+          .append("text")
           .attr("dx", 8)
           .attr("dy", ".35em")
           .attr("font-family", "Georgia")
-          .text(function(d: any) { return d.id });
+          .text(function(d: any) {
+            return d.id;
+          });
         function ticked() {
           link
-              .attr("x1", function(d: any) { return d.source.x; })
-              .attr("y1", function(d: any) { return d.source.y; })
-              .attr("x2", function(d: any) { return d.target.x; })
-              .attr("y2", function(d: any) { return d.target.y; });
-      
-          nodes
-              .attr("transform", function(d: any) { return "translate("+[d.x,d.y]+")" });
+            .attr("x1", function(d: any) {
+              return d.source.x;
+            })
+            .attr("y1", function(d: any) {
+              return d.source.y;
+            })
+            .attr("x2", function(d: any) {
+              return d.target.x;
+            })
+            .attr("y2", function(d: any) {
+              return d.target.y;
+            });
+
+          nodes.attr("transform", function(d: any) {
+            return "translate(" + [d.x, d.y] + ")";
+          });
         }
-        simulation
-            .nodes(graph.nodes)
-            .on("tick", ticked);
-        simulation.force("link")
-          .links(graph.links);
+        simulation.nodes(graph.nodes).on("tick", ticked);
+        simulation.force("link").links(graph.links);
       })
       .catch(function(error) {
         throw error;
@@ -477,9 +511,15 @@ export default class Script extends Vue {
 
   /* display text on hover for circles and chords */
   displayFieldSet(i: any, type: string) {
-    d3.select("#svg2").select("svg").remove()
-    d3.select("#svg3").select("svg").remove()
-    d3.select("#svg4").select("svg").remove();
+    d3.select("#svg2")
+      .select("svg")
+      .remove();
+    d3.select("#svg3")
+      .select("svg")
+      .remove();
+    d3.select("#svg4")
+      .select("svg")
+      .remove();
     this.div2.style("opacity", 0.9);
     let legend;
     const fields: any = {};
@@ -493,19 +533,23 @@ export default class Script extends Vue {
       fields["Gender"] = this.words[i].gender;
     } else return;
     const characterSmall = legend.toLowerCase();
-    d3
-      .select("#svg3")
+    d3.select("#svg3")
       .append("svg")
       .attr("width", this.width_right)
       .attr("height", this.height)
       .append("image")
-      .attr("xlink:href", process.env.VUE_APP_PUBLIC_PATH + "/characters/" + characterSmall + ".png")
+      .attr(
+        "xlink:href",
+        process.env.VUE_APP_PUBLIC_PATH +
+          "/characters/" +
+          characterSmall +
+          ".png"
+      )
       .attr("width", 230)
       .attr("height", 230);
     d3.select("fieldset").remove();
     const fieldset = this.div2.append("fieldset");
     fieldset.append("legend").html(legend);
-
 
     for (const key in fields) {
       fieldset
@@ -522,21 +566,33 @@ export default class Script extends Vue {
 
   /* display the small text on hover for each chord group */
   displayTooltip(i: any, opacity: any) {
-    const text = this.words[i].key + 
-    "<br>" + this.movies[0].Name + ": " + this.words[i].wordsList[0] + " words" + 
-    "<br>" + this.movies[1].Name + ": " + this.words[i].wordsList[1] + " words" +
-    "<br>" + this.movies[2].Name + ": " + this.words[i].wordsList[2] + " words";
+    const text =
+      this.words[i].key +
+      "<br>" +
+      this.movies[0].Name +
+      ": " +
+      this.words[i].wordsList[0] +
+      " words" +
+      "<br>" +
+      this.movies[1].Name +
+      ": " +
+      this.words[i].wordsList[1] +
+      " words" +
+      "<br>" +
+      this.movies[2].Name +
+      ": " +
+      this.words[i].wordsList[2] +
+      " words";
     // this.div1.transition().duration(500).remove();
-    
-      this.div1
-        .transition()
-        .duration(500)
-        .style("opacity", opacity);
-      this.div1
-        .html(text)
-        .style("left", d3.event.pageX + 15 + "px")
-        .style("top", d3.event.pageY - 10 + "px");
-    
+
+    this.div1
+      .transition()
+      .duration(500)
+      .style("opacity", opacity);
+    this.div1
+      .html(text)
+      .style("left", d3.event.pageX + 15 + "px")
+      .style("top", d3.event.pageY - 10 + "px");
   }
 
   /* change chord opacity on hover for each chord */
@@ -588,9 +644,15 @@ export default class Script extends Vue {
       })
       .transition()
       .style("opacity", 0.1);
-    d3.select("#svg2").select("svg").remove();
-    d3.select("#svg3").select("svg").remove();
-    d3.select("#svg4").select("svg").remove();
+    d3.select("#svg2")
+      .select("svg")
+      .remove();
+    d3.select("#svg3")
+      .select("svg")
+      .remove();
+    d3.select("#svg4")
+      .select("svg")
+      .remove();
     d3.select("fieldset").remove();
     const svg2 = d3
       .select("#svg4")
@@ -598,7 +660,7 @@ export default class Script extends Vue {
       .attr("width", this.width_right)
       .attr("height", this.height)
       .append("g") // group to move svg sideways
-      .attr("transform", "translate(" + (0 + "," + -100) + ")")
+      .attr("transform", "translate(" + (0 + "," + -100) + ")");
     this.drawBubbles(svg2, i);
   }
 
