@@ -1411,7 +1411,8 @@ console.log(numch)
     });
   }
   mounted() {
-    this.draw()
+    
+    this.draw();
     
 
  

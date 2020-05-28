@@ -13,7 +13,7 @@ svg {
   <b-container fluid>
       <b-row>
         <b-col cols="10">             
-            <div id="Timeline" >
+            <div id="Timeline" style="width: 1200px; height 500px">
               
             </div>
         </b-col>
