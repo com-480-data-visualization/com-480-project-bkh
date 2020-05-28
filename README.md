@@ -81,5 +81,9 @@ npm run build
 
 npm run lint
 
+### Deploy to github pages
+
+npm run deploy
+
 **80% of the final grade**
 
