@@ -1,9 +1,13 @@
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.lotr-font {
+  font-family: "Uncial Antiqua";
+}
+</style>
 
 <template>
   <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top">
     <!--fixed="top"-->
-    <b-navbar-brand href="#">Lord of the rings</b-navbar-brand>
+    <b-navbar-brand href="#" class="lotr-font">Lord of the rings</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -15,6 +19,7 @@
           :key="index"
           href="#"
           @click="itemClicked(headerItem)"
+          class="lotr-font"
           >{{ headerItem.name }}</b-nav-item
         >
       </b-navbar-nav>

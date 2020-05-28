@@ -23,7 +23,6 @@ export default class Header extends Vue {
   }
 
   itemClicked(item: HeaderItem) {
-    //var target = this.hash;
     const target = $(item.ref);
     const offset = target.offset()?.top;
     if (offset) {
@@ -34,10 +33,7 @@ export default class Header extends Vue {
             scrollTop: offset - 72
           },
           900,
-          "swing",
-          function() {
-            //window.location.hash = target;
-          }
+          "swing"
         );
     }
   }
