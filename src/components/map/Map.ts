@@ -122,11 +122,7 @@ export default class LotrMap extends Vue {
       .enter()
       .append("path")
       .attr("d", x => this.path(x as GeoPermissibleObjects))
-      //.attr("id", x => { i++; return i;})
       .attr("class", className);
-    //.attr("filter", "url(#mid-sepia)");
-    // .attr("stroke-miterlimit",10)
-    // .attr("stroke-width",1);
   }
 
   drawTrips(features: GeoPermissibleObjects[]) {

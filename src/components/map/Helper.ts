@@ -23,7 +23,6 @@ export function generateDistribution(
       lastValue + getTriangleArea(triangles[i]) / totalArea;
     cumulativeDistribution.push(nextValue);
   }
-  // [area1, area1 + aera2, area1 + area2 + area3, ...]
   return cumulativeDistribution;
 }
 
@@ -69,8 +68,4 @@ export function calcRandomPoint(
   const rY = rbY + rcY + a.y;
 
   return [rX, rY];
-  // const center = turf.centerOfMass(turf.lineString(triangle));
-  // if(center.geometry)
-  //   return [center.geometry?.coordinates[0], center.geometry?.coordinates[1]];
-  // return [0,0]
 }

@@ -45,7 +45,6 @@
 .map-container {
   width: 100%;
   position: relative;
-  //border: 1px solid black;
 }
 
 .zoom-btn-container {
