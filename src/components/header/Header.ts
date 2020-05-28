@@ -16,7 +16,7 @@ export default class Header extends Vue {
 
   constructor() {
     super();
-    this.headerItems.push(new HeaderItem("smth", "#"));
+    this.headerItems.push(new HeaderItem("Characters", "#ScriptAnchor"));
     this.headerItems.push(new HeaderItem("Map", "#MapAnchor"));
     this.headerItems.push(new HeaderItem("Timeline", "#TimelineAnchor"));
     this.headerItems.push(new HeaderItem("Kings", "#KingsAnchor"));
