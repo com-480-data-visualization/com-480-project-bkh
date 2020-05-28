@@ -1121,6 +1121,7 @@ export default class Timeline extends Vue {
   newXAxis:any;
   newXAxisTop:any;
   newYAxis:any;
+  yshif:any;
   reDraw(numch:any)
   {
     console.log(this.filteredData)
@@ -1132,7 +1133,6 @@ export default class Timeline extends Vue {
     ])
     .range([this.margin.right, this.width - this.margin.left])
     .nice();
-  
   this.newy = d3
     .scaleBand()
     .domain(this.filteredData.map(d => d.Name))
@@ -1141,10 +1141,27 @@ export default class Timeline extends Vue {
   this.newXAxis = d3.axisBottom(this.newx).tickPadding(2);
   this.newXAxisTop = d3.axisTop(this.newx).tickPadding(2);
   this.newYAxis = d3.axisLeft(this.newy);
-
+  
   this.svg.selectAll("g.x.axis").call(this.newXAxis);
   this.svg.selectAll("g.x.axis").call(this.newXAxisTop);
   this.svg.selectAll("g.y.axis").call(this.newYAxis);
+  this.yshif = "-4.5em";
+console.log(numch)
+  if(numch == 5 || numch == 0)
+  {
+    this.yshif = "-4.5em";
+
+  }else if(numch == 1)
+  {
+    this.yshif = "-12.1em";
+  }else if(numch == 2)
+  {
+    this.yshif = "-6.3em";
+  }
+  this.svg.selectAll("g.y.axis")
+  .selectAll("text")
+  .attr("dx", "-.8em")
+  .attr("dy", this.yshif);
   this.colour = d3
   .scaleOrdinal()
   .domain(
