@@ -1,0 +1,91 @@
+char,movie,word_count,name,birth,death,gender,hair,height,race,realm,spouse,birth_era,death_era
+ARAGORN,The Fellowship of the Ring,563,Aragorn II Elessar,"March 1 ,2931",FO 120,Male,Dark,"198cm (6'6"")",Men,"Reunited Kingdom,Arnor,Gondor",Arwen,Ma,FO
+ARAGORN,The Return of the King,664,Aragorn II Elessar,"March 1 ,2931",FO 120,Male,Dark,"198cm (6'6"")",Men,"Reunited Kingdom,Arnor,Gondor",Arwen,Ma,FO
+ARAGORN,The Two Towers,753,Aragorn II Elessar,"March 1 ,2931",FO 120,Male,Dark,"198cm (6'6"")",Men,"Reunited Kingdom,Arnor,Gondor",Arwen,Ma,FO
+ARWEN,The Fellowship of the Ring,209,Arwen,TA 241,FO 121,Female,Black,,"Half-elven,Men",Reunited Kingdom,Aragorn II Elessar,TA,FO
+ARWEN,The Return of the King,126,Arwen,TA 241,FO 121,Female,Black,,"Half-elven,Men",Reunited Kingdom,Aragorn II Elessar,TA,FO
+ARWEN,The Two Towers,119,Arwen,TA 241,FO 121,Female,Black,,"Half-elven,Men",Reunited Kingdom,Aragorn II Elessar,TA,FO
+BARLIMAN,The Fellowship of the Ring,113,Barliman Butterbur,TA,FO,Male,Brown (movie),,Men,,,TA,FO
+BILBO,The Fellowship of the Ring,1375,Bilbo Baggins,"22 September ,TA 2890",Unknown (Last sighting 29 SeptemberTA 3021),Male,"Brown, later white","1.25m (4'1"")",Hobbit,,None,22,Unknown
+BILBO,The Return of the King,58,Bilbo Baggins,"22 September ,TA 2890",Unknown (Last sighting 29 SeptemberTA 3021),Male,"Brown, later white","1.25m (4'1"")",Hobbit,,None,22,Unknown
+BOROMIR,The Fellowship of the Ring,438,Boromir,TA 2978,"February 26 ,3019",Male,Dark (book) Light brown (movie),,Men,,,TA,Fe
+BOROMIR,The Two Towers,168,Boromir,TA 2978,"February 26 ,3019",Male,Dark (book) Light brown (movie),,Men,,,TA,Fe
+CAPTAIN,The Return of the King,17,Beregond (Captain),TA 2976,FO,Male,,,Men,,Unnamed wife,TA,FO
+DAMROD,The Return of the King,4,Damrod,TA,TA 3019,Male,Dark,,Men,,,TA,TA
+DEAGOL,The Return of the King,14,Dï¿½ï¿½,"Between TA 2400 and ,TA 2430",TA 2463,Male,Dark-brown,,Hobbit,,None,Be,TA
+DENETHOR,The Return of the King,663,Denethor II,TA 2930,"March 15 ,3019",Male,"Dark, grey (in old age)",,Men,,Finduilas,TA,Ma
+DENETHOR,The Two Towers,309,Denethor II,TA 2930,"March 15 ,3019",Male,"Dark, grey (in old age)",,Men,,Finduilas,TA,Ma
+ELROND,The Fellowship of the Ring,244,Elrond,FA 532,Still alive,Male,Dark,Tall,Half-elven,Rivendell,Celebrï¿½ï¿½,FA,St
+ELROND,The Return of the King,301,Elrond,FA 532,Still alive,Male,Dark,Tall,Half-elven,Rivendell,Celebrï¿½ï¿½,FA,St
+ELROND,The Two Towers,203,Elrond,FA 532,Still alive,Male,Dark,Tall,Half-elven,Rivendell,Celebrï¿½ï¿½,FA,St
+EOMER,The Return of the King,197,omer,TA 2990,FO 63,Male,Dirty blond,Tall-6'6,Men,Rohan,Lothï¿½ï¿½ï¿½ï¿½ï¿½ï¿½riel after the,TA,FO
+EOMER,The Two Towers,244,omer,TA 2990,FO 63,Male,Dirty blond,Tall-6'6,Men,Rohan,Lothï¿½ï¿½ï¿½ï¿½ï¿½ï¿½riel after the,TA,FO
+EOTHAIN,The Two Towers,2,othain,TA,,Male,,,Men,,,TA,
+EOWYN,The Return of the King,294,owyn,TA 2995,FO,Female,Pale gold,Tall,Men,,Faramir,TA,FO
+EOWYN,The Two Towers,259,owyn,TA 2995,FO,Female,Pale gold,Tall,Men,,Faramir,TA,FO
+FARAMIR,The Return of the King,412,Faramir,TA 2983,"February 26 ,82",Male,Raven,,Men,Minas Ithil,owyn,TA,Fe
+FARAMIR,The Two Towers,547,Faramir,TA 2983,"February 26 ,82",Male,Raven,,Men,Minas Ithil,owyn,TA,Fe
+FARMER MAGGOT,The Fellowship of the Ring,36,Farmer Maggot,TA 2948,,Male,Brown,,Hobbit,,Unnamed wife,TA,
+FIGWIT,The Return of the King,8,Lindir,,"Possibly departed to ,Aman",Male,Brown (films),Tall,Elf,,,,Po
+FRODO,The Fellowship of the Ring,582,Frodo Baggins,"22 September ,TA 2968","Unknown (Last sighting ,September 29 ,3021)",Male,Brown,"1.06m (3'6"")",Hobbit,,,22,Unknown
+FRODO,The Return of the King,804,Frodo Baggins,"22 September ,TA 2968","Unknown (Last sighting ,September 29 ,3021)",Male,Brown,"1.06m (3'6"")",Hobbit,,,22,Unknown
+FRODO,The Two Towers,678,Frodo Baggins,"22 September ,TA 2968","Unknown (Last sighting ,September 29 ,3021)",Male,Brown,"1.06m (3'6"")",Hobbit,,,22,Unknown
+GAFFER,The Fellowship of the Ring,27,Hamfast Gamgee,TA 2926,FO 7 (SR 1428),Male,"Brown, later gray","1.2m (3'11"")",Hobbit,,Bell Goodchild,TA,FO
+GALADRIEL,The Fellowship of the Ring,645,Galadriel,YT 1362,Still alive,Female,Golden,Tall,Elf,"Eregion,Lothlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rie",Celeborn,YT,St
+GALADRIEL,The Return of the King,77,Galadriel,YT 1362,Still alive,Female,Golden,Tall,Elf,"Eregion,Lothlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rie",Celeborn,YT,St
+GALADRIEL,The Two Towers,21,Galadriel,YT 1362,Still alive,Female,Golden,Tall,Elf,"Eregion,Lothlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rie",Celeborn,YT,St
+GAMLING,The Return of the King,22,Gamling,"Possibly late ,TA",,Male,Possibly blond,,Men,,,Po,
+GAMLING,The Two Towers,78,Gamling,"Possibly late ,TA",,Male,Possibly blond,,Men,,,Po,
+GANDALF,The Fellowship of the Ring,1306,Gandalf,BA,"January 253019 ,Battle of the Peak immortal",Male,"Grey, later white",,Maiar,,,BA,Ja
+GANDALF,The Return of the King,1808,Gandalf,BA,"January 253019 ,Battle of the Peak immortal",Male,"Grey, later white",,Maiar,,,BA,Ja
+GANDALF,The Two Towers,952,Gandalf,BA,"January 253019 ,Battle of the Peak immortal",Male,"Grey, later white",,Maiar,,,BA,Ja
+GIMLI,The Fellowship of the Ring,281,Gimli,TA 2879,"Unknown (Departed to ,Aman ,FO 120,)",Male,Auburn,,Dwarf,,,TA,Unknown
+GIMLI,The Return of the King,360,Gimli,TA 2879,"Unknown (Departed to ,Aman ,FO 120,)",Male,Auburn,,Dwarf,,,TA,Unknown
+GIMLI,The Two Towers,476,Gimli,TA 2879,"Unknown (Departed to ,Aman ,FO 120,)",Male,Auburn,,Dwarf,,,TA,Unknown
+GOLLUM,The Fellowship of the Ring,23,Gollum,TA 2430,"March 25 ,3019",Male,,,Hobbit,,,TA,Ma
+GOLLUM,The Return of the King,831,Gollum,TA 2430,"March 25 ,3019",Male,,,Hobbit,,,TA,Ma
+GOLLUM,The Two Towers,972,Gollum,TA 2430,"March 25 ,3019",Male,,,Hobbit,,,TA,Ma
+GORBAG,The Return of the King,23,Gorbag,,"March 14 ,3019, slain by ,Shagrat",Male,black,medium,"Uruk-hai,Orc",Cirith Ungol,,,Ma
+GOTHMOG,The Return of the King,103,Gothmog (Lieutenant of Morgul),,"March 15, 3019 (film)",Male,"white/gray, possibly light brown (film)","5'9"" - 6'4"" (film)",Orc,"Minas Morgul,the Witch-King",None,,Ma
+GRIMA,The Return of the King,2,Grï¿½ï¿½ï¿½ï¿½ï¿½,TA 2974,"November 3 ,3019",Male,Black,,Men,,,TA,No
+GRIMA,The Two Towers,416,Grï¿½ï¿½ï¿½ï¿½ï¿½,TA 2974,"November 3 ,3019",Male,Black,,Men,,,TA,No
+GRIMBOLD,The Return of the King,9,Grimbold,TA,"March 15 ,3019",Male,,,Men,,,TA,Ma
+GRISHNAKH,The Two Towers,37,Grishnï¿½ï¿½,,"February 29 ,3019",Male,,,Orc,,,,Fe
+HALDIR,The Fellowship of the Ring,60,Haldir (Lorien),,TA 3019,Male,Golden,,Elf,,,,TA
+HALDIR,The Two Towers,5,Haldir (Lorien),,TA 3019,Male,Golden,,Elf,,,,TA
+HAMA,The Two Towers,64,Hï¿½ï¿½,TA 2975,"March 3, or ,4 ,3019",Male,Reddish brown (movie),,Men,,"Unknown, possibly none",TA,Ma
+IROLAS,The Return of the King,20,Iorlas,"b. ,TA 2990",FO,Male,,,Men,,,b.,FO
+KING OF THE DEAD,The Return of the King,70,The King of the Dead,SA,"Sometime after the ,War of the Last Alliance",Male,,Tall,Men,"White Mountains,Paths of the Dead",,SA,So
+LEGOLAS,The Fellowship of the Ring,60,Legolas,,Still alive,Male,"Uncertain (book), Blonde (films)",,Elf,,,,St
+LEGOLAS,The Return of the King,320,Legolas,,Still alive,Male,"Uncertain (book), Blonde (films)",,Elf,,,,St
+LEGOLAS,The Two Towers,173,Legolas,,Still alive,Male,"Uncertain (book), Blonde (films)",,Elf,,,,St
+MERRY,The Fellowship of the Ring,207,Merry Gamgee,,,Unknown,,,Hobbit,,,,
+MERRY,The Return of the King,475,Merry Gamgee,,,Unknown,,,Hobbit,,,,
+MERRY,The Two Towers,386,Merry Gamgee,,,Unknown,,,Hobbit,,,,
+MORWEN,The Two Towers,39,Morwen,FA 443,FA 500,Female,"Dark, grey in old age",Tall,Men,,Hï¿½ï¿½ï¿½ï¿½ï,FA,FA
+MOUTH OF SAURON,The Return of the King,94,Mouth of Sauron,FA,"Probably died on ,March 25TA 3019, during destruction of ,Mordor",Male,Most likely black or none,"6' 7"" (2.01 m)",Men,,None,FA,Pr
+MRS BRACEGIRDLE,The Fellowship of the Ring,1,Primrose Bracegirdle,TA 2865,,Female,,,Hobbit,,Blanco Bracegirdle,TA,
+NOAKES,The Fellowship of the Ring,17,Old Noakes,TA 2923,FO,Male,,,Hobbit,,Unnamed wife,TA,FO
+OLD MAN,The Two Towers,1,Old Man Willow,,,Unknown,,,Men,,,,
+PIPPIN,The Fellowship of the Ring,247,Pippin Gamgee,,,Unknown,,,Hobbit,,,,
+PIPPIN,The Return of the King,789,Pippin Gamgee,,,Unknown,,,Hobbit,,,,
+PIPPIN,The Two Towers,357,Pippin Gamgee,,,Unknown,,,Hobbit,,,,
+RING,The Fellowship of the Ring,5,Thuringwethil,,FA 465,Female,,,Vampire,,,,FA
+ROSIE,The Fellowship of the Ring,3,Rosie Cotton,TA 2984,FO 61,Female,Light brown (film),,Hobbit,,Sam Gamgee,TA,FO
+ROSIE,The Return of the King,2,Rosie Cotton,TA 2984,FO 61,Female,Light brown (film),,Hobbit,,Sam Gamgee,TA,FO
+SAM,The Fellowship of the Ring,232,Samwise Gamgee,"April 6 ,2980",Still alive,Male,Blond (movie),"1.22m (4'0"")",Hobbit,,Rosie Cotton,Ap,St
+SAM,The Return of the King,1130,Samwise Gamgee,"April 6 ,2980",Still alive,Male,Blond (movie),"1.22m (4'0"")",Hobbit,,Rosie Cotton,Ap,St
+SAM,The Two Towers,1120,Samwise Gamgee,"April 6 ,2980",Still alive,Male,Blond (movie),"1.22m (4'0"")",Hobbit,,Rosie Cotton,Ap,St
+SANDYMAN,The Fellowship of the Ring,51,Ted Sandyman,TA 2920,FO 50,Male,,,Hobbit,,,TA,FO
+SARUMAN,The Fellowship of the Ring,111,Saruman,BA,"3 November ,3019",Male,White,,Maiar,"Isengard,Nan Curunï¿½",None,BA,3
+SARUMAN,The Return of the King,316,Saruman,BA,"3 November ,3019",Male,White,,Maiar,"Isengard,Nan Curunï¿½",None,BA,3
+SARUMAN,The Two Towers,280,Saruman,BA,"3 November ,3019",Male,White,,Maiar,"Isengard,Nan Curunï¿½",None,BA,3
+SAURON,The Fellowship of the Ring,34,Sauron,BA,"March 25 ,3019",Male,Various ,Various until ,Maiar,,None,BA,Ma
+SAURON,The Return of the King,3,Sauron,BA,"March 25 ,3019",Male,Various ,Various until ,Maiar,,None,BA,Ma
+SHAGRAT,The Return of the King,91,Shagrat,TA 2050,,Male,,7'1,Uruk,Cirith Ungol,,TA,
+SNAGA,The Two Towers,17,Snaga,,TA 3019,Male,,,Orc,,,,TA
+THEODEN,The Return of the King,628,Thï¿½ï¿½,"TA 2948 ,Gondor","March 15 ,3019",Male,White with braids (book) Blonde (films),Tall,Men,,Elfhild,TA,Ma
+THEODEN,The Two Towers,755,Thï¿½ï¿½,"TA 2948 ,Gondor","March 15 ,3019",Male,White with braids (book) Blonde (films),Tall,Men,,Elfhild,TA,Ma
+TREEBEARD,The Return of the King,58,Treebeard,YT,,Male,"Leaf, twig and moss like",15'4,"Ents,Onodrim",,Fimbrethil,YT,
+TREEBEARD,The Two Towers,656,Treebeard,YT,,Male,"Leaf, twig and moss like",15'4,"Ents,Onodrim",,Fimbrethil,YT,
+WITCH KING,The Return of the King,74,Witch-king of Angmar,SA,"March 15 ,3019",Male,"Brown, graying, later white","7' 1"" (2.13 metres)",Men,"Angmar,Minas Morgul,Osgiliath",,SA,Ma
