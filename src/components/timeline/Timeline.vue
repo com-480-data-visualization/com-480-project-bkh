@@ -12,9 +12,8 @@ svg {
 <template>
   <b-container fluid>
       <b-row>
-        <b-col cols="10">             
-            <div id="Timeline" style="width: 1200px; height 500px">
-              
+        <b-col cols="100">             
+            <div id="Timeline" >
             </div>
         </b-col>
 
