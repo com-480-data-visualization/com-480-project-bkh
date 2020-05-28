@@ -32,24 +32,24 @@
         <h5>
           The Lord of the Rings - the masterpiece by Tolkien. Besides the events and battles,
            characters and their developments
-          throughout the story is very impressive. Peter Jackson illustrates this story in his triology, give perfect
-          description of characters. We tried to visualize main characters in each of three movies,
-          and their features written and shown in the story and in the movies.
+          throughout the story is very impressive. Peter Jackson illustrated this story in his triology, 
+          gave perfect descriptions of characters. We tried to visualize the main characters 
+          in each of three movies, and their features written and shown in the story and in the movies.
         </h5>
         <br />
         <h5>
           In the visualization below you can see the main diagram in the left. 
           You can get information about characters by hovering to the part of
           the outer circle. It will create a new infographic in the right,
-          and it give answers to questions such as 
+          and give answers to questions such as 
           "How many words do Frodo speak in The Fellowship of the Rings?", 
           "What is the the birth date of Sam?". By hovering or clicking one
           of the three circles inside, you can explore questions about the movies.
           "What are the races of the main characters in the Two Towers?", 
           "Whom did Aragorn speak with most in the Return of the King?", - analyze
           the full interaction graph to get detailed information
-          about character relations. Remember thick edge between nodes
-          means more interaction between characters.
+          about character relations. Remember bigger node for the character, greater role in the movie.
+          And thicker edge between nodes represents more interaction between characters.
         </h5>
       </div>
       <Script></Script>

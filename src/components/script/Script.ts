@@ -252,6 +252,7 @@ export default class Script extends Vue {
     let filename = "f_r_character_graph.json";
     if(i == 1) filename = "t_t_character_graph.json"
     else if(i == 2) filename = "r_k_character_graph.json"
+    const words = this.words;
     d3.json(process.env.VUE_APP_PUBLIC_PATH + filename).
       then(function(graph) {
         const link = svg.append("g")
@@ -261,21 +262,29 @@ export default class Script extends Vue {
           .enter().append("line")
             .attr("stroke", "grey")
             .attr("stroke-width", function(d: any) { return d.value / 5; });
-      
         const nodes = svg.append("g")
             .attr("class", "nodes")
           .selectAll("circle")
           .data(graph.nodes)
           .enter().append("g")
-        
+        console.log(words);
         nodes.append("circle")
-            .attr("r", 5)
-            .attr("fill", function(d: any) { return currColor(d.race); })
-            .call(d3.drag()
-              .on("start", dragstarted)
-              .on("drag", dragged)
-              .on("end", dragended));
-        
+          .attr("r", (d: any) => {
+            let wordCount = 0;
+            for(let j = 0; j < words.length; j += 1) {
+                  if(words[j].key == d.id) {
+                     wordCount = words[j].wordsList[i];
+                     break;
+                  }
+            }
+            console.log(wordCount);
+            return Math.round(wordCount / 100) + 5;
+          })
+          .attr("fill", function(d: any) { return currColor(d.race); })
+          .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
         nodes.append("text")
           .attr("dx", 8)
           .attr("dy", ".35em")
@@ -473,7 +482,7 @@ export default class Script extends Vue {
     d3.select("#svg4").select("svg").remove();
     this.div2.style("opacity", 0.9);
     let legend;
-    let fields: any = {};
+    const fields: any = {};
     if (type == "character") {
       legend = this.words[i].key;
       fields["Race"] = this.words[i].race;
@@ -482,16 +491,6 @@ export default class Script extends Vue {
       fields["Hair Color"] = this.words[i].hair;
       fields["Height"] = this.words[i].height;
       fields["Gender"] = this.words[i].gender;
-    } else if (type == "movie") {
-      legend = this.movies[i].Name;
-      fields = {
-        "Runtime In Minutes": this.movies[i].runtime,
-        "Budget In Millions": this.movies[i].budget,
-        "Box Office Revenue In Millions": this.movies[i].boxRevenue,
-        "Academy Award Nominations": this.movies[i].nominations,
-        "Academy Award Wins": this.movies[i].wins,
-        "Rotten Tomatoes Score": this.movies[i].score
-      };
     } else return;
     const characterSmall = legend.toLowerCase();
     d3
